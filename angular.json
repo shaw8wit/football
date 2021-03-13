@@ -24,6 +24,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bulma/css/bulma.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -119,6 +120,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "football"
+    }
+  },
+  "defaultProject": "football",
+  "cli": {
+    "analytics": "5e139b16-c6c2-4ea4-adce-b77b5a22f9dd"
+  }
 }
