@@ -9,14 +9,17 @@ import { Country } from './country/country.model';
 })
 export class SearchService {
   countriesFetched = new Subject<Country[]>();
-  base_url = 'https://v3.football.api-sports.io/';
-
+  private base_url = 'https://v3.football.api-sports.io/';
   private countries: Country[] = [];
 
   constructor(private http: HttpClient) { }
 
+  getCountries() {
+    return this.countries.slice();
+  }
+
   notifyListeners() {
-    this.countriesFetched.next(this.countries);
+    this.countriesFetched.next(this.getCountries());
   }
 
   fetchCountries() {
@@ -26,9 +29,12 @@ export class SearchService {
           headers: new HttpHeaders({ "x-rapidapi-key": api_key })
         })
         .subscribe(responseData => {
-          console.log(responseData);
+          const response = responseData['response'];
+          for (let item in response) {
+            this.countries.push(new Country(response[item]['name'], response[item]['flag']));
+          }
+          this.notifyListeners();
         });
     }
-    this.notifyListeners();
   }
 }
