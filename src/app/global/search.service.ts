@@ -1,8 +1,8 @@
 import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { api_key } from './const';
-import { Country } from './country/country.model';
+import { api_key } from '../const';
+import { Country } from '../country/country.model';
 
 @Injectable({
   providedIn: 'root'
@@ -24,15 +24,15 @@ export class SearchService {
 
   fetchCountries() {
     if (!this.countries.length) {
+      console.log("Fetching countries:");
       this.http
-        .get<[Country]>(this.base_url + 'countries', {
+        .get<Country[]>(this.base_url + 'countries', {
           headers: new HttpHeaders({ "x-rapidapi-key": api_key })
         })
         .subscribe(responseData => {
-          const response = responseData['response'];
-          for (let item in response) {
-            this.countries.push(new Country(response[item]['name'], response[item]['flag']));
-          }
+          responseData['response'].forEach(item => {
+            this.countries.push(new Country(item['name'], item['flag']));
+          });
           this.notifyListeners();
         });
     }

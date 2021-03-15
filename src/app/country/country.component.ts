@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { SearchService } from '../search.service';
+import { SearchService } from '../global/search.service';
 import { Country } from './country.model';
 
 @Component({
