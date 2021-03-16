@@ -31,7 +31,7 @@ export class SearchService {
         })
         .subscribe(responseData => {
           responseData['response'].forEach(item => {
-            this.countries.push(new Country(item['name'], item['flag']));
+            this.countries.push(new Country(item['name'].toLowerCase(), item['flag']));
           });
           this.notifyListeners();
         });

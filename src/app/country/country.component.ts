@@ -10,7 +10,8 @@ import { Country } from './country.model';
 })
 export class CountryComponent implements OnInit, OnDestroy {
   subscription: Subscription;
-  countries: Country[];
+  filterString: string = '';
+  countries: Country[] = [];
 
   constructor(private search: SearchService) { }
 

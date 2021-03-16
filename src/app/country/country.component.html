@@ -1,14 +1,15 @@
 <div class="field">
   <div class="control is-large">
-    <input class="input is-large" type="text" name="value" placeholder="Enter Country Name" autocomplete="off">
+    <input class="input is-large" type="text" name="value" [(ngModel)]="filterString" placeholder="Enter Country Name"
+      autocomplete="off">
   </div>
 </div>
 <ul class="columns is-multiline p-4">
-  <li class="column is-one-third" *ngFor="let country of countries">
+  <li class="column is-one-third" *ngFor="let country of countries | filter: filterString: 'name'">
     <div class="card">
       <div class="card-image">
         <figure class="image is-4by3">
-          <a href="">
+          <a href="" [title]="country.name">
             <img [src]="country.flag" [alt]="country.name">
           </a>
         </figure>
