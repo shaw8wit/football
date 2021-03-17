@@ -35,6 +35,13 @@ export class SearchService {
           });
           this.notifyListeners();
         });
+    } else {
+      this.notifyListeners();
     }
   }
+
+  fetchLeagues(country: string) {
+    console.log(`fetching leagues from country ${country}`);
+  }
+
 }
