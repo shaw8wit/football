@@ -1,4 +1,4 @@
-import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { api_key } from '../const';
@@ -41,7 +41,11 @@ export class SearchService {
   }
 
   fetchLeagues(country: string) {
-    console.log(`fetching leagues from country ${country}`);
+    return this.http
+      .get(this.base_url + 'leagues', {
+        headers: new HttpHeaders({ "x-rapidapi-key": api_key }),
+        params: new HttpParams().set('country', country)
+      });
   }
 
 }
