@@ -41,11 +41,23 @@ export class SearchService {
   }
 
   fetchLeagues(country: string) {
-    return this.http
-      .get(this.base_url + 'leagues', {
-        headers: new HttpHeaders({ "x-rapidapi-key": api_key }),
-        params: new HttpParams().set('country', country)
-      });
+    return this.http.get(
+      this.base_url + 'leagues', {
+      headers: new HttpHeaders({ "x-rapidapi-key": api_key }),
+      params: new HttpParams().set('country', country)
+    }
+    );
   }
 
+  fetchTeams(leagueId: string, season: string) {
+    let params = new HttpParams();
+    params = params.append('league', leagueId);
+    params = params.append('season', season);
+    return this.http.get(
+      this.base_url + 'teams', {
+      headers: new HttpHeaders({ "x-rapidapi-key": api_key }),
+      params: params
+    }
+    ).subscribe(response => console.log(response));
+  }
 }

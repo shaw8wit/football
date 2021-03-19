@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { SearchService } from '../global/search.service';
 import { League } from './league.model';
 
@@ -23,4 +23,5 @@ export class LeagueComponent implements OnInit {
         });
       });
   }
+
 }

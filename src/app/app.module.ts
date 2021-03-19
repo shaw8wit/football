@@ -10,6 +10,7 @@ import { FilterPipe } from './global/filter.pipe';
 import { FormsModule } from '@angular/forms';
 import { SearchComponent } from './search/search.component';
 import { LeagueComponent } from './league/league.component';
+import { TeamComponent } from './team/team.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { LeagueComponent } from './league/league.component';
     CountryComponent,
     FilterPipe,
     SearchComponent,
-    LeagueComponent
+    LeagueComponent,
+    TeamComponent
   ],
   imports: [
     BrowserModule,
