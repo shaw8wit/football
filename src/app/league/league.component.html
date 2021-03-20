@@ -1,7 +1,8 @@
 <ul class="columns is-multiline p-4">
-  <li class="column is-one-third" *ngFor="let league of leagues">
+  <li class="column is-one-third" *ngFor="let league of leagues; let i = index">
     <div class="card">
-      <a [routerLink]="['/team']" [queryParams]="{leagueId: league.id, season: year.value}">
+      <!-- <a [routerLink]="['/team']" [queryParams]="{leagueId: league.id, season: year.value}"> -->
+      <a (click)="onSubmit($event)">
         <div class="card-image">
           <figure class="image is-4by5">
             <img [src]="league.logo" [alt]="league.name">
@@ -14,8 +15,8 @@
       </a>
       <div class="control is-expanded">
         <div class="select is-fullwidth">
-          <select ngModel #year="ngModel">
-            <option *ngFor="let season of league.seasons" [ngValue]="season.year">{{ season.year }}</option>
+          <select (change)="onChange($event.target.value)" #year>
+            <option *ngFor="let season of league.seasons" [value]="season.year">{{ season.year }}</option>
           </select>
         </div>
       </div>
