@@ -54,10 +54,11 @@ export class SearchService {
     params = params.append('league', leagueId);
     params = params.append('season', season);
     return this.http.get(
-      this.base_url + 'teams', {
-      headers: new HttpHeaders({ "x-rapidapi-key": api_key }),
-      params: params
-    }
-    ).subscribe(response => console.log(response));
+      this.base_url + 'teams',
+      {
+        headers: new HttpHeaders({ "x-rapidapi-key": api_key }),
+        params: params
+      }
+    );
   }
 }
