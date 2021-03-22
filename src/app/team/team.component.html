@@ -1,17 +1,23 @@
+<div class="field">
+  <div class="control is-large">
+    <input class="input is-large" type="text" name="value" [(ngModel)]="filterString" placeholder="Filter Team"
+      autocomplete="off">
+  </div>
+</div>
 <ul class="columns is-multiline p-4">
-  <li class="column is-one-third" *ngFor="let team of teams">
+  <li class="column is-one-third" *ngFor="let team of teams | filter: filterString: 'name'">
     <div class="card">
       <!-- <a [routerLink]="['/team']" [queryParams]="{leagueId: league.id, season: year.value}"> -->
-      <!-- <a (click)="onSubmit(league.id, year.value)"> -->
-      <div class="card-image">
-        <figure class="image is-4by5">
-          <img [src]="team.logo" [alt]="team.name">
-        </figure>
-      </div>
-      <div class="card-content p-3">
-        <p class="title is-6 has-text-centered">{{ team.name }}</p>
-      </div>
-      <!-- </a> -->
+      <a (click)="onSubmit(team.id)">
+        <div class="card-image">
+          <figure class="image is-square">
+            <img [src]="team.logo" [alt]="team.name">
+          </figure>
+        </div>
+        <div class="card-content p-3">
+          <p class="title is-6 has-text-centered">{{ team.name }}</p>
+        </div>
+      </a>
     </div>
   </li>
 </ul>

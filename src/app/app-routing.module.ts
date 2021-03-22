@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CountryComponent } from './country/country.component';
 import { LeagueComponent } from './league/league.component';
+import { TeamInfoComponent } from './team/team-info/team-info.component';
 import { TeamComponent } from './team/team.component';
 
 
@@ -10,6 +11,7 @@ const routes: Routes = [
   { path: 'country', component: CountryComponent },
   { path: 'league', component: LeagueComponent },
   { path: 'team', component: TeamComponent },
+  { path: 'team-info', component: TeamInfoComponent },
 ];
 
 // path: 'recipes', component: RecipesComponent, children: [

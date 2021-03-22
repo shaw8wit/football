@@ -11,6 +11,7 @@ export class SearchService {
   countriesFetched = new Subject<Country[]>();
   private base_url = 'https://v3.football.api-sports.io/';
   private countries: Country[] = [];
+  teamInfo: any;
 
   constructor(private http: HttpClient) { }
 
@@ -31,7 +32,7 @@ export class SearchService {
         })
         .subscribe(responseData => {
           responseData['response'].forEach(item => {
-            this.countries.push(new Country(item['name'].toLowerCase(), item['flag']));
+            this.countries.push(new Country(item['name'], item['flag']));
           });
           this.notifyListeners();
         });
@@ -42,10 +43,11 @@ export class SearchService {
 
   fetchLeagues(country: string) {
     return this.http.get(
-      this.base_url + 'leagues', {
-      headers: new HttpHeaders({ "x-rapidapi-key": api_key }),
-      params: new HttpParams().set('country', country)
-    }
+      this.base_url + 'leagues',
+      {
+        headers: new HttpHeaders({ "x-rapidapi-key": api_key }),
+        params: new HttpParams().set('country', country)
+      }
     );
   }
 
@@ -60,5 +62,22 @@ export class SearchService {
         params: params
       }
     );
+  }
+
+  fetchTeamStatistics(leagueId: string, season: string, teamId: string) {
+    let params = new HttpParams();
+    params = params.append('league', leagueId);
+    params = params.append('season', season);
+    params = params.append('team', teamId);
+    this.http.get(
+      this.base_url + 'teams/statistics',
+      {
+        headers: new HttpHeaders({ "x-rapidapi-key": api_key }),
+        params: params
+      }
+    ).subscribe(responseData => {
+      this.teamInfo = responseData['response'];
+      console.log(this.teamInfo);
+    });
   }
 }

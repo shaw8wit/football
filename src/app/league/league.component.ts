@@ -10,7 +10,7 @@ import { League } from './league.model';
 })
 export class LeagueComponent implements OnInit {
   leagues: League[] = [];
-  @ViewChild("year", { static: false }) year: ElementRef;
+  filterString: string = '';
 
   constructor(private route: ActivatedRoute,
     private searchService: SearchService,

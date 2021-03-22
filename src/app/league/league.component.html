@@ -1,5 +1,21 @@
+<div class="field has-addons">
+  <div class="control">
+    <input class="input" type="text" placeholder="Find a repository">
+  </div>
+  <div class="control">
+    <a class="button is-info">
+      Search
+    </a>
+  </div>
+</div>
+<div class="field">
+  <div class="control is-large">
+    <input class="input is-large" type="text" name="value" [(ngModel)]="filterString" placeholder="Filter League"
+      autocomplete="off">
+  </div>
+</div>
 <ul class="columns is-multiline p-4">
-  <li class="column is-one-third" *ngFor="let league of leagues">
+  <li class="column is-one-third" *ngFor="let league of leagues | filter: filterString: 'name'">
     <div class="card">
       <!-- <a [routerLink]="['/team']" [queryParams]="{leagueId: league.id, season: year.value}"> -->
       <a (click)="onSubmit(league.id, year.value)">
