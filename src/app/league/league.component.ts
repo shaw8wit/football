@@ -23,7 +23,8 @@ export class LeagueComponent implements OnInit {
         responseData['response'].forEach(e => {
           this.leagues.push(new League(e.league.id, e.league.name, e.league.type, e.league.logo, e.seasons));
         });
-      });
+      }
+      );
   }
 
   onSubmit(id: string, year: string) {

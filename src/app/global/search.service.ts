@@ -1,8 +1,9 @@
-import { HttpClient, HttpClientModule, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { api_key } from '../const';
 import { Country } from '../country/country.model';
+import { delay } from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,6 @@ export class SearchService {
   countriesFetched = new Subject<Country[]>();
   private base_url = 'https://v3.football.api-sports.io/';
   private countries: Country[] = [];
-  teamInfo: any;
 
   constructor(private http: HttpClient) { }
 
@@ -69,15 +69,12 @@ export class SearchService {
     params = params.append('league', leagueId);
     params = params.append('season', season);
     params = params.append('team', teamId);
-    this.http.get(
+    return this.http.get(
       this.base_url + 'teams/statistics',
       {
         headers: new HttpHeaders({ "x-rapidapi-key": api_key }),
         params: params
       }
-    ).subscribe(responseData => {
-      this.teamInfo = responseData['response'];
-      console.log(this.teamInfo);
-    });
+    );
   }
 }

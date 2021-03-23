@@ -10,25 +10,22 @@ import { Team } from './team.model';
 })
 export class TeamComponent implements OnInit {
   teams: Team[] = [];
-  leagueId: string;
-  season: string;
   filterString: string = '';
 
   constructor(private route: ActivatedRoute, private searchService: SearchService, private router: Router) { }
 
   ngOnInit(): void {
-    this.leagueId = this.route.snapshot.queryParams['leagueId'];
-    this.season = this.route.snapshot.queryParams['season'];
-    this.searchService.fetchTeams(this.leagueId, this.season)
+    const params = this.route.snapshot.queryParams;
+    this.searchService.fetchTeams(params['leagueId'], params['season'])
       .subscribe(responseData => {
         responseData['response'].forEach(e => {
           this.teams.push(new Team(e.team.id, e.team.name, e.team.logo));
         });
-      });
+      }
+      );
   }
 
   onSubmit(id: string) {
-    this.searchService.fetchTeamStatistics(this.leagueId, this.season, id);
-    this.router.navigate(['/team-info']);
+    this.router.navigate(['/team-info'], { queryParamsHandling: "merge", queryParams: { 'teamId': id } });
   }
 }

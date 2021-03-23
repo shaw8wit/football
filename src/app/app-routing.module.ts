@@ -5,7 +5,6 @@ import { LeagueComponent } from './league/league.component';
 import { TeamInfoComponent } from './team/team-info/team-info.component';
 import { TeamComponent } from './team/team.component';
 
-
 const routes: Routes = [
   { path: '', redirectTo: '/country', pathMatch: 'full' },
   { path: 'country', component: CountryComponent },
