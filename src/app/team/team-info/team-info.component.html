@@ -1,1 +1,89 @@
-<p>team-info works!</p>
+<div class="box p-0 m-3">
+  <table class="table is-striped is-hoverable is-fullwidth has-text-centered">
+    <thead>
+      <tr>
+        <th></th>
+        <th>HOME</th>
+        <th>AWAY</th>
+        <th>ALL</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td colspan="4" class="has-text-left">FIXTURES</td>
+      </tr>
+      <tr>
+        <td>Games Played</td>
+        <td>{{ team.fixtures.played.home }}</td>
+        <td>{{ team.fixtures.played.away }}</td>
+        <td>{{ team.fixtures.played.total }}</td>
+      </tr>
+      <tr>
+        <td>Wins</td>
+        <td>{{ team.fixtures.wins.home }}</td>
+        <td>{{ team.fixtures.wins.away }}</td>
+        <td>{{ team.fixtures.wins.total }}</td>
+      </tr>
+      <tr>
+        <td>Draws</td>
+        <td>{{ team.fixtures.draws.home }}</td>
+        <td>{{ team.fixtures.draws.away }}</td>
+        <td>{{ team.fixtures.draws.total }}</td>
+      </tr>
+      <tr>
+        <td>Loss</td>
+        <td>{{ team.fixtures.loses.home }}</td>
+        <td>{{ team.fixtures.loses.away }}</td>
+        <td>{{ team.fixtures.loses.total }}</td>
+      </tr>
+      <tr>
+        <td colspan="4" class="has-text-left">GOALS</td>
+      </tr>
+      <tr>
+        <td>Scored</td>
+        <td>{{ team.goals.for.total.home }}</td>
+        <td>{{ team.goals.for.total.away }}</td>
+        <td>{{ team.goals.for.total.total }}</td>
+      </tr>
+      <tr>
+        <td>Conceded</td>
+        <td>{{ team.goals.against.total.home }}</td>
+        <td>{{ team.goals.against.total.away }}</td>
+        <td>{{ team.goals.against.total.total }}</td>
+      </tr>
+      <tr>
+        <td>Clean Sheet</td>
+        <td>{{ team.clean_sheet.home }}</td>
+        <td>{{ team.clean_sheet.away }}</td>
+        <td>{{ team.clean_sheet.total }}</td>
+      </tr>
+      <tr>
+        <td colspan="4" class="has-text-left">BIGGEST</td>
+      </tr>
+      <tr>
+        <td>Scored</td>
+        <td>{{ team.biggest.goals.for.home }}</td>
+        <td>{{ team.biggest.goals.for.away }}</td>
+        <td>{{ team.biggest.goals.for.total }}</td>
+      </tr>
+      <tr>
+        <td>Conceded</td>
+        <td>{{ team.biggest.goals.against.home }}</td>
+        <td>{{ team.biggest.goals.against.away }}</td>
+        <td>{{ team.biggest.goals.against.total }}</td>
+      </tr>
+      <tr>
+        <td>Win</td>
+        <td>{{ team.biggest.wins.home }}</td>
+        <td>{{ team.biggest.wins.away }}</td>
+        <td>{{ team.biggest.wins.total }}</td>
+      </tr>
+      <tr>
+        <td>Loss</td>
+        <td>{{ team.biggest.loses.home }}</td>
+        <td>{{ team.biggest.loses.away }}</td>
+        <td>{{ team.biggest.loses.total }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
