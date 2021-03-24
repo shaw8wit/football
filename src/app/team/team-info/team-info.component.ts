@@ -22,4 +22,8 @@ export class TeamInfoComponent implements OnInit {
       }
       );
   }
+
+  getUrl() {
+    return "url('" + this.team.team.logo + "')";
+  }
 }

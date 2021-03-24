@@ -1,3 +1,32 @@
+<section class="hero">
+  <div class="hero-body" [ngStyle]="{'background-image': getUrl()}" style="background-repeat: no-repeat;
+  background-size: auto; background-position: right;">
+    <p class="title">
+      {{ team.team.name }}
+    </p>
+    <p class="subtitle">
+      {{ team.league.name }} - {{ team.league.season }}
+    </p>
+  </div>
+</section>
+
+<div class="columns">
+  <div class="column">
+    <div style="display: grid">
+      <div class="table-container">
+        <table class="table is-bordered is-fullwidth">
+          <thead>
+            <tr>
+              <th *ngFor="let c of team.form | split" [ngClass]="{'is-success': c === 'W', 
+              'is-light': c === 'D', 'is-danger': c === 'L'}">{{ c }}</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="box p-0 m-3">
   <table class="table is-striped is-hoverable is-fullwidth has-text-centered">
     <thead>
@@ -64,25 +93,25 @@
         <td>Scored</td>
         <td>{{ team.biggest.goals.for.home }}</td>
         <td>{{ team.biggest.goals.for.away }}</td>
-        <td>{{ team.biggest.goals.for.total }}</td>
+        <td></td>
       </tr>
       <tr>
         <td>Conceded</td>
         <td>{{ team.biggest.goals.against.home }}</td>
         <td>{{ team.biggest.goals.against.away }}</td>
-        <td>{{ team.biggest.goals.against.total }}</td>
+        <td></td>
       </tr>
       <tr>
         <td>Win</td>
         <td>{{ team.biggest.wins.home }}</td>
         <td>{{ team.biggest.wins.away }}</td>
-        <td>{{ team.biggest.wins.total }}</td>
+        <td></td>
       </tr>
       <tr>
         <td>Loss</td>
         <td>{{ team.biggest.loses.home }}</td>
         <td>{{ team.biggest.loses.away }}</td>
-        <td>{{ team.biggest.loses.total }}</td>
+        <td></td>
       </tr>
     </tbody>
   </table>

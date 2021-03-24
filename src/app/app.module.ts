@@ -12,17 +12,19 @@ import { SearchComponent } from './search/search.component';
 import { LeagueComponent } from './league/league.component';
 import { TeamComponent } from './team/team.component';
 import { TeamInfoComponent } from './team/team-info/team-info.component';
+import { SplitPipe } from './global/split.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FavoriteComponent,
-    CountryComponent,
-    FilterPipe,
+    TeamComponent,
     SearchComponent,
     LeagueComponent,
-    TeamComponent,
-    TeamInfoComponent
+    CountryComponent,
+    FavoriteComponent,
+    TeamInfoComponent,
+    FilterPipe,
+    SplitPipe
   ],
   imports: [
     BrowserModule,
