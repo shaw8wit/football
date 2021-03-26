@@ -51,12 +51,12 @@ export class SearchService {
     );
   }
 
-  fetchTeams(leagueId: string, season: string) {
+  fetchTeamStandings(leagueId: string, season: string) {
     let params = new HttpParams();
     params = params.append('league', leagueId);
     params = params.append('season', season);
     return this.http.get(
-      this.base_url + 'teams',
+      this.base_url + 'standings',
       {
         headers: new HttpHeaders({ "x-rapidapi-key": api_key }),
         params: params

@@ -9,20 +9,20 @@ import { Team } from './team.model';
   styleUrls: ['./team.component.css']
 })
 export class TeamComponent implements OnInit {
-  teams: Team[] = [];
+  teams: any[] = [];
   filterString: string = '';
 
   constructor(private route: ActivatedRoute, private searchService: SearchService, private router: Router) { }
 
   ngOnInit(): void {
     const params = this.route.snapshot.queryParams;
-    this.searchService.fetchTeams(params['leagueId'], params['season'])
-      .subscribe(responseData => {
-        responseData['response'].forEach(e => {
-          this.teams.push(new Team(e.team.id, e.team.name, e.team.logo));
-        });
+    this.searchService.fetchTeamStandings(params['leagueId'], params['season']).subscribe(
+      responseData => {
+        console.log(responseData['response']);
+        this.teams = responseData['response'][0]['league']['standings'][0];
       }
-      );
+    );
+
   }
 
   onSubmit(id: string) {

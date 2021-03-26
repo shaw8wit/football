@@ -1,23 +1,72 @@
-<div class="field">
+<!-- <div class="field">
   <div class="control is-large">
     <input class="input is-large" type="text" name="value" [(ngModel)]="filterString" placeholder="Filter Team"
       autocomplete="off">
   </div>
 </div>
 <ul class="columns is-multiline p-4">
-  <li class="column is-one-third" *ngFor="let team of teams | filter: filterString: 'name'">
+  <li class="column is-one-third" *ngFor="let t of teams">
     <div class="card">
-      <!-- <a [routerLink]="['/team']" [queryParams]="{leagueId: league.id, season: year.value}"> -->
-      <a (click)="onSubmit(team.id)">
+      <a (click)="onSubmit(t.team.id)">
         <div class="card-image">
           <figure class="image is-square">
-            <img [src]="team.logo" [alt]="team.name">
+            <img [src]="t.team.logo" [alt]="t.team.name">
           </figure>
         </div>
         <div class="card-content p-3">
-          <p class="title is-6 has-text-centered">{{ team.name }}</p>
+          <p class="title is-6 has-text-centered">{{ t.team.name }}</p>
         </div>
       </a>
     </div>
   </li>
-</ul>
+</ul> -->
+
+<div class="columns">
+  <div class="column pb-0 pt-5">
+    <div style="display: grid">
+      <div class="table-container">
+        <table class="table is-striped is-hoverable is-fullwidth">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Club</th>
+              <th>MP</th>
+              <th>W</th>
+              <th>D</th>
+              <th>L</th>
+              <th>GF</th>
+              <th>GA</th>
+              <th>GD</th>
+              <th>Pts</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let t of teams" (click)="onSubmit(t.team.id)">
+              <td>{{ t.rank }}</td>
+              <td>
+                <div class="columns">
+                  <div class="column">
+                    <figure class="image is-32x32">
+                      <img [src]="t.team.logo" [alt]="t.team.name">
+                    </figure>
+                  </div>
+                  <div class="column is-full">
+                    {{ t.team.name }}
+                  </div>
+                </div>
+              </td>
+              <td>{{ t.all.played }}</td>
+              <td>{{ t.all.win }}</td>
+              <td>{{ t.all.draw }}</td>
+              <td>{{ t.all.lose }}</td>
+              <td>{{ t.all.goals.for }}</td>
+              <td>{{ t.all.goals.against }}</td>
+              <td>{{ t.goalsDiff }}</td>
+              <td>{{ t.points }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

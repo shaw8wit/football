@@ -1,3 +1,7 @@
 input {
   text-align: center;
 }
+
+tr {
+  cursor: pointer;
+}
