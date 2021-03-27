@@ -11,23 +11,30 @@ import { League } from './league.model';
 export class LeagueComponent implements OnInit {
   leagues: League[] = [];
   filterString: string = '';
+  flagUrl: string = '';
+  country: string = '';
 
   constructor(private route: ActivatedRoute,
     private searchService: SearchService,
     private router: Router) { }
 
   ngOnInit(): void {
-    const country = this.route.snapshot.queryParams['country'];
-    this.searchService.fetchLeagues(country)
-      .subscribe(responseData => {
+    this.country = this.route.snapshot.queryParams['country'];
+    this.searchService.fetchLeagues(this.country).subscribe(
+      responseData => {
+        this.flagUrl = responseData['response'][0].country.flag;
         responseData['response'].forEach(e => {
           this.leagues.push(new League(e.league.id, e.league.name, e.league.type, e.league.logo, e.seasons));
         });
       }
-      );
+    );
   }
 
   onSubmit(id: string, year: string) {
     this.router.navigate(['/team'], { queryParams: { 'leagueId': id, 'season': year } });
+  }
+
+  getFlagUrl() {
+    return "url('" + this.flagUrl + "')";
   }
 }

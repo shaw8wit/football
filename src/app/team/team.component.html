@@ -21,6 +21,15 @@
   </li>
 </ul> -->
 
+<section class="hero box">
+  <div class="hero-body" [ngStyle]="{'background-image': getLogoUrl()}"
+    style="background-repeat: no-repeat; background-size: contain; background-position: right;">
+    <p class="title">
+      {{ league }}
+    </p>
+  </div>
+</section>
+
 <div class="columns">
   <div class="column pb-0 pt-5">
     <div style="display: grid">

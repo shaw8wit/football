@@ -11,6 +11,8 @@ import { Team } from './team.model';
 export class TeamComponent implements OnInit {
   teams: any[] = [];
   filterString: string = '';
+  logoUrl: string = '';
+  league: string = '';
 
   constructor(private route: ActivatedRoute, private searchService: SearchService, private router: Router) { }
 
@@ -27,5 +29,9 @@ export class TeamComponent implements OnInit {
 
   onSubmit(id: string) {
     this.router.navigate(['/team-info'], { queryParamsHandling: "merge", queryParams: { 'teamId': id } });
+  }
+
+  getLogoUrl() {
+    return "url('" + this.logoUrl + "')";
   }
 }
