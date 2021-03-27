@@ -21,19 +21,22 @@
   </li>
 </ul> -->
 
-<section class="hero box">
+<section class="hero box m-2">
   <div class="hero-body" [ngStyle]="{'background-image': getLogoUrl()}"
     style="background-repeat: no-repeat; background-size: contain; background-position: right;">
     <p class="title">
       {{ league }}
     </p>
+    <p class="subtitle">
+      {{ season }}
+    </p>
   </div>
 </section>
 
 <div class="columns">
-  <div class="column pb-0 pt-5">
+  <div class="column p-0 py-3">
     <div style="display: grid">
-      <div class="table-container">
+      <div class="table-container box p-0 m-3">
         <table class="table is-striped is-hoverable is-fullwidth">
           <thead>
             <tr>

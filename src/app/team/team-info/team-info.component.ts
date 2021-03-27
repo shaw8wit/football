@@ -11,6 +11,7 @@ import { SearchService } from 'src/app/global/search.service';
 export class TeamInfoComponent implements OnInit {
   team: any;
   url: string = '';
+  players: any[] = []; // ! use this data for displaying teams players
 
   constructor(private searchService: SearchService, private route: ActivatedRoute) { }
 
@@ -22,6 +23,15 @@ export class TeamInfoComponent implements OnInit {
         responseData => {
           this.team = responseData['response'];
           this.url = this.team.team.logo;
+        }
+      );
+    this.searchService
+      .fetchPlayers(params['leagueId'], params['season'], params['teamId'])
+      .subscribe(
+        responseData => {
+          this.players = responseData['response'];
+          console.log("Players:\n");
+          console.log(this.players);
         }
       );
   }

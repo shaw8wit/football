@@ -77,4 +77,31 @@ export class SearchService {
       }
     );
   }
+
+  fetchTopPlayers(leagueId: string, season: string) {
+    let params = new HttpParams();
+    params = params.append('league', leagueId);
+    params = params.append('season', season);
+    return this.http.get(
+      this.base_url + 'players/topscorers',
+      {
+        headers: new HttpHeaders({ "x-rapidapi-key": api_key }),
+        params: params
+      }
+    );
+  }
+
+  fetchPlayers(leagueId: string, season: string, teamId: string) {
+    let params = new HttpParams();
+    params = params.append('league', leagueId);
+    params = params.append('season', season);
+    params = params.append('team', teamId);
+    return this.http.get(
+      this.base_url + 'players',
+      {
+        headers: new HttpHeaders({ "x-rapidapi-key": api_key }),
+        params: params
+      }
+    );
+  }
 }

@@ -12,19 +12,30 @@ export class TeamComponent implements OnInit {
   teams: any[] = [];
   filterString: string = '';
   logoUrl: string = '';
+  season: string = '';
   league: string = '';
+  topScorers: any[] = []; // ! use this data for displaying topscorers
 
   constructor(private route: ActivatedRoute, private searchService: SearchService, private router: Router) { }
 
   ngOnInit(): void {
     const params = this.route.snapshot.queryParams;
-    this.searchService.fetchTeamStandings(params['leagueId'], params['season']).subscribe(
+    this.season = params['season'];
+    this.searchService.fetchTeamStandings(params['leagueId'], this.season).subscribe(
       responseData => {
-        console.log(responseData['response']);
-        this.teams = responseData['response'][0]['league']['standings'][0];
+        const r = responseData['response'][0]['league'];
+        this.league = r['name'];
+        this.logoUrl = r['logo'];
+        this.teams = r['standings'][0];
       }
     );
-
+    this.searchService.fetchTopPlayers(params['leagueId'], this.season).subscribe(
+      responseData => {
+        this.topScorers = responseData['response'];
+        console.log("Top scorers:\n");
+        console.log(this.topScorers);
+      }
+    );
   }
 
   onSubmit(id: string) {
