@@ -29,7 +29,7 @@
     </div>
   </div>
 
-  <div class="tabs is-centered is-boxed is-fullwidth">
+  <div class="tabs is-centered is-toggle is-fullwidth mb-2">
     <ul>
       <li [ngClass]="{'is-active' : stats}">
         <a (click)="toggleView()">Statistics</a>
@@ -40,6 +40,7 @@
     </ul>
   </div>
 
+  <!-- * team statistics -->
   <table *ngIf="stats" class="table is-striped is-hoverable is-fullwidth has-text-centered">
     <thead>
       <tr>
@@ -127,4 +128,34 @@
       </tr>
     </tbody>
   </table>
+
+  <!-- * team players -->
+  <div *ngIf="!stats">
+    <ul class="columns is-multiline p-3">
+      <li class="column is-one-third" *ngFor="let p of players">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-square">
+              <img [src]="p.player.photo" [alt]="p.player.name">
+            </figure>
+          </div>
+          <div class="card-content p-3 has-text-centered">
+            <p class="title is-6">{{ p.player.name }}</p>
+            <p class="subtitle is-7">Age: {{ p.player.age }}</p>
+          </div>
+        </div>
+      </li>
+    </ul>
+
+    <nav class="pagination is-small is-centered m-0" role="navigation">
+      <a class="pagination-previous">Previous</a>
+      <a class="pagination-next">Next</a>
+      <ul class="pagination-list">
+        <li *ngFor="let i of totalPlayerPage; let index = index">
+          <a class="pagination-link" [ngClass]="{'is-current': currentPlayerPage == index + 1}">{{ index + 1 }}</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
 </div>
