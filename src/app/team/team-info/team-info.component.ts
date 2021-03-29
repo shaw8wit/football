@@ -12,6 +12,7 @@ export class TeamInfoComponent implements OnInit {
   team: any;
   url: string = '';
   players: any[] = []; // ! use this data for displaying teams players
+  stats: boolean = true;
 
   constructor(private searchService: SearchService, private route: ActivatedRoute) { }
 
@@ -38,5 +39,9 @@ export class TeamInfoComponent implements OnInit {
 
   getUrl() {
     return "url('" + this.url + "')";
+  }
+
+  toggleView() {
+    this.stats = !this.stats;
   }
 }

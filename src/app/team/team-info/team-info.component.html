@@ -29,7 +29,18 @@
     </div>
   </div>
 
-  <table class="table is-striped is-hoverable is-fullwidth has-text-centered">
+  <div class="tabs is-centered is-boxed is-fullwidth">
+    <ul>
+      <li [ngClass]="{'is-active' : stats}">
+        <a (click)="toggleView()">Statistics</a>
+      </li>
+      <li [ngClass]="{'is-active' : !stats}">
+        <a (click)="toggleView()">Players</a>
+      </li>
+    </ul>
+  </div>
+
+  <table *ngIf="stats" class="table is-striped is-hoverable is-fullwidth has-text-centered">
     <thead>
       <tr>
         <th></th>
