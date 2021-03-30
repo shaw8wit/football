@@ -12,8 +12,8 @@ export class TeamInfoComponent implements OnInit {
   team: any;
   players: any[] = []; // ! use this data for displaying teams players
   stats: boolean = true;
-  currentPlayerPage: number = 0;
-  totalPlayerPage: any = 0;
+  currentPlayerPage: number = 1;
+  totalPlayerPage: any = 1;
 
   constructor(private searchService: SearchService, private route: ActivatedRoute) { }
 
@@ -46,5 +46,11 @@ export class TeamInfoComponent implements OnInit {
 
   toggleView() {
     this.stats = !this.stats;
+  }
+
+  loadPlayers(index: number) {
+    if (index !== this.currentPlayerPage) {
+      this.currentPlayerPage = index;
+    }
   }
 }

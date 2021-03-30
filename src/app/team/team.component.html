@@ -33,8 +33,19 @@
   </div>
 </section>
 
-<div class="columns">
-  <div class="column p-0 py-3">
+<div class="tabs is-centered is-boxed is-fullwidth mb-2">
+  <ul>
+    <li [ngClass]="{'is-active' : standings}">
+      <a (click)="toggleView()">Standings</a>
+    </li>
+    <li [ngClass]="{'is-active' : !standings}">
+      <a (click)="toggleView()">Top Players</a>
+    </li>
+  </ul>
+</div>
+
+<div *ngIf="standings" class="columns">
+  <div class="column p-0">
     <div style="display: grid">
       <div class="table-container box p-0 m-3">
         <table class="table is-striped is-hoverable is-fullwidth">
@@ -82,3 +93,19 @@
     </div>
   </div>
 </div>
+
+<ul *ngIf="!standings" class="columns is-multiline p-3">
+  <li class="column is-one-third" *ngFor="let p of topPlayers">
+    <div class="card">
+      <div class="card-image">
+        <figure class="image is-square">
+          <img [src]="p.player.photo" [alt]="p.player.name">
+        </figure>
+      </div>
+      <div class="card-content p-3 has-text-centered">
+        <p class="title is-6">{{ p.player.name }}</p>
+        <p class="subtitle is-7">Age: {{ p.player.age }}</p>
+      </div>
+    </div>
+  </li>
+</ul>

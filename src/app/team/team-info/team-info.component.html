@@ -147,12 +147,13 @@
       </li>
     </ul>
 
-    <nav class="pagination is-small is-centered m-0" role="navigation">
-      <a class="pagination-previous">Previous</a>
-      <a class="pagination-next">Next</a>
+    <nav class="pagination is-centered m-0 p-0" role="navigation">
       <ul class="pagination-list">
         <li *ngFor="let i of totalPlayerPage; let index = index">
-          <a class="pagination-link" [ngClass]="{'is-current': currentPlayerPage == index + 1}">{{ index + 1 }}</a>
+          <a class="pagination-link" (click)="loadPlayers(index + 1)"
+            [ngClass]="{'is-current': currentPlayerPage == index + 1}">
+            {{ index + 1 }}
+          </a>
         </li>
       </ul>
     </nav>

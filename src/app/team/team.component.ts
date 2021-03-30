@@ -13,7 +13,8 @@ export class TeamComponent implements OnInit {
   logoUrl: string = '';
   season: string = '';
   league: string = '';
-  topScorers: any[] = []; // ! use this data for displaying topscorers
+  standings: boolean = false;
+  topPlayers: any[] = []; // ! use this data for displaying topscorers
 
   constructor(private route: ActivatedRoute, private searchService: SearchService, private router: Router) { }
 
@@ -30,9 +31,7 @@ export class TeamComponent implements OnInit {
     );
     this.searchService.fetchTopPlayers(params['leagueId'], this.season).subscribe(
       responseData => {
-        this.topScorers = responseData['response'];
-        console.log("Top scorers:\n");
-        console.log(this.topScorers);
+        this.topPlayers = responseData['response'];
       }
     );
   }
@@ -43,5 +42,9 @@ export class TeamComponent implements OnInit {
 
   getLogoUrl() {
     return "url('" + this.logoUrl + "')";
+  }
+
+  toggleView() {
+    this.standings = !this.standings;
   }
 }
