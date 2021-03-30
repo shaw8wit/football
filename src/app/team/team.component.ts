@@ -13,7 +13,7 @@ export class TeamComponent implements OnInit {
   logoUrl: string = '';
   season: string = '';
   league: string = '';
-  standings: boolean = false;
+  standings: boolean = true;
   topPlayers: any[] = []; // ! use this data for displaying topscorers
 
   constructor(private route: ActivatedRoute, private searchService: SearchService, private router: Router) { }

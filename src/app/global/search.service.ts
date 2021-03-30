@@ -91,11 +91,12 @@ export class SearchService {
     );
   }
 
-  fetchPlayers(leagueId: string, season: string, teamId: string) {
+  fetchPlayers(leagueId: string, season: string, teamId: string, page: string) {
     let params = new HttpParams();
     params = params.append('league', leagueId);
     params = params.append('season', season);
     params = params.append('team', teamId);
+    params = params.append('page', page);
     return this.http.get(
       this.base_url + 'players',
       {

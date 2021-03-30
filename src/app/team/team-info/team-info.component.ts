@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
 import { SearchService } from 'src/app/global/search.service';
 
 @Component({
@@ -10,34 +9,24 @@ import { SearchService } from 'src/app/global/search.service';
 })
 export class TeamInfoComponent implements OnInit {
   team: any;
-  players: any[] = []; // ! use this data for displaying teams players
+  players: any[] = [];
   stats: boolean = true;
-  currentPlayerPage: number = 1;
   totalPlayerPage: any = 1;
+  currentPlayerPage: number = 1;
+  params: any;
 
   constructor(private searchService: SearchService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    const params = this.route.snapshot.queryParams;
+    this.params = this.route.snapshot.queryParams;
     this.searchService
-      .fetchTeamStatistics(params['leagueId'], params['season'], params['teamId'])
+      .fetchTeamStatistics(this.params['leagueId'], this.params['season'], this.params['teamId'])
       .subscribe(
         responseData => {
           this.team = responseData['response'];
         }
       );
-    this.searchService
-      .fetchPlayers(params['leagueId'], params['season'], params['teamId'])
-      .subscribe(
-        responseData => {
-          console.log(responseData);
-          this.currentPlayerPage = responseData['paging']['current'];
-          this.totalPlayerPage = new Array(+responseData['paging']['total']);
-          this.players = responseData['response'];
-          console.log("Players:\n");
-          console.log(this.players);
-        }
-      );
+    this.loadPlayers(0);
   }
 
   getUrl() {
@@ -49,8 +38,21 @@ export class TeamInfoComponent implements OnInit {
   }
 
   loadPlayers(index: number) {
-    if (index !== this.currentPlayerPage) {
-      this.currentPlayerPage = index;
+    this.currentPlayerPage = index++;
+    console.log(this.players[this.currentPlayerPage]);
+    if (this.players[this.currentPlayerPage] === undefined) {
+      this.searchService
+        .fetchPlayers(this.params['leagueId'], this.params['season'], this.params['teamId'], index.toString())
+        .subscribe(
+          responseData => {
+            if (index === 0) {
+              this.currentPlayerPage = responseData['paging']['current'];
+              this.totalPlayerPage = new Array(+responseData['paging']['total']);
+              this.players = new Array(+responseData['paging']['total']);
+            }
+            this.players[this.currentPlayerPage - 1] = responseData['response'];
+          }
+        );
     }
   }
 }

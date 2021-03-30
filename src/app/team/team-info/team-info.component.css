@@ -1,4 +1,5 @@
-.is-active {
+.is-active,
+.is-current {
   pointer-events: none;
   cursor: default;
 }
