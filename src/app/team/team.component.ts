@@ -14,7 +14,7 @@ export class TeamComponent implements OnInit {
   season: string = '';
   league: string = '';
   standings: boolean = true;
-  topPlayers: any[] = []; // ! use this data for displaying topscorers
+  topPlayers: any[] = [];
 
   constructor(private route: ActivatedRoute, private searchService: SearchService, private router: Router) { }
 
