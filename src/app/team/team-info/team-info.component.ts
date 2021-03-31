@@ -9,24 +9,27 @@ import { SearchService } from 'src/app/global/search.service';
 })
 export class TeamInfoComponent implements OnInit {
   team: any;
-  players: any[] = [];
-  stats: boolean = true;
-  totalPlayerPage: any = 1;
-  currentPlayerPage: number = 1;
   params: any;
+  players: any[] = [];
+  loadingTeam: boolean;
+  stats: boolean = true;
+  loadingPlayers: boolean;
+  currentPlayerPage: number;
 
   constructor(private searchService: SearchService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.loadingTeam = true;
     this.params = this.route.snapshot.queryParams;
     this.searchService
       .fetchTeamStatistics(this.params['leagueId'], this.params['season'], this.params['teamId'])
       .subscribe(
         responseData => {
           this.team = responseData['response'];
+          this.loadingTeam = false;
         }
       );
-    this.loadPlayers(0);
+    this.loadPlayers(1);
   }
 
   getUrl() {
@@ -38,19 +41,20 @@ export class TeamInfoComponent implements OnInit {
   }
 
   loadPlayers(index: number) {
-    this.currentPlayerPage = index++;
-    console.log(this.players[this.currentPlayerPage]);
-    if (this.players[this.currentPlayerPage] === undefined) {
+    this.loadingPlayers = true;
+    this.currentPlayerPage = index;
+    const notInitialized = this.players[this.currentPlayerPage - 1] === undefined;
+    if (notInitialized || this.players[this.currentPlayerPage - 1].length === 0) {
       this.searchService
         .fetchPlayers(this.params['leagueId'], this.params['season'], this.params['teamId'], index.toString())
         .subscribe(
           responseData => {
-            if (index === 0) {
-              this.currentPlayerPage = responseData['paging']['current'];
-              this.totalPlayerPage = new Array(+responseData['paging']['total']);
-              this.players = new Array(+responseData['paging']['total']);
+            if (notInitialized) {
+              const total = +responseData['paging']['total'];
+              for (let i = 0; i < total; i++) this.players.push([]);
             }
             this.players[this.currentPlayerPage - 1] = responseData['response'];
+            this.loadingPlayers = false;
           }
         );
     }

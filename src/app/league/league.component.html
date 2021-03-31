@@ -1,54 +1,57 @@
-<div class="field has-addons">
-  <div class="control">
-    <input class="input" type="text" placeholder="Find a repository">
-  </div>
-  <div class="control">
-    <a class="button is-info">
-      Search
-    </a>
-  </div>
-</div>
-
-<div class="box p-0 m-2">
-  <section class="hero">
-    <div class="hero-body" [ngStyle]="{'background-image': getFlagUrl()}"
-      style="background-repeat: no-repeat; background-size: contain; background-position: right;">
-      <p class="title">
-        {{ country }}
-      </p>
+<app-loader *ngIf="!loaded"></app-loader>
+<div *ngIf="loaded">
+  <div class="field has-addons">
+    <div class="control">
+      <input class="input" type="text" placeholder="Find a repository">
     </div>
-  </section>
-
-  <div class="field">
-    <div class="control is-large">
-      <input class="input is-large" type="text" name="value" [(ngModel)]="filterString" placeholder="Filter League/Cup"
-        autocomplete="off">
-    </div>
-  </div>
-</div>
-
-<ul class="columns is-multiline p-4">
-  <li class="column is-one-third" *ngFor="let league of leagues | filter: filterString: 'name'">
-    <div class="card">
-      <!-- <a [routerLink]="['/team']" [queryParams]="{leagueId: league.id, season: year.value}"> -->
-      <a (click)="onSubmit(league.id, year.value)">
-        <div class="card-image">
-          <figure class="image is-4by5">
-            <img [src]="league.logo" [alt]="league.name">
-          </figure>
-        </div>
-        <div class="card-content p-2">
-          <p class="title is-6">{{ league.name }}</p>
-          <p class="subtitle is-7 has-text-right">{{ league.type }}</p>
-        </div>
+    <div class="control">
+      <a class="button is-info">
+        Search
       </a>
-      <div class="control is-expanded">
-        <div class="select is-fullwidth">
-          <select #year>
-            <option *ngFor="let season of league.seasons" [value]="season.year">{{ season.year }}</option>
-          </select>
-        </div>
+    </div>
+  </div>
+
+  <div class="box p-0 m-2">
+    <section class="hero">
+      <div class="hero-body" [ngStyle]="{'background-image': getFlagUrl()}"
+        style="background-repeat: no-repeat; background-size: contain; background-position: right;">
+        <p class="title">
+          {{ country }}
+        </p>
+      </div>
+    </section>
+
+    <div class="field">
+      <div class="control is-large">
+        <input class="input is-large" type="text" name="value" [(ngModel)]="filterString"
+          placeholder="Filter League/Cup" autocomplete="off">
       </div>
     </div>
-  </li>
-</ul>
+  </div>
+
+  <ul class="columns is-multiline p-4">
+    <li class="column is-one-third" *ngFor="let league of leagues | filter: filterString: 'name'">
+      <div class="card">
+        <!-- <a [routerLink]="['/team']" [queryParams]="{leagueId: league.id, season: year.value}"> -->
+        <a (click)="onSubmit(league.id, year.value)">
+          <div class="card-image">
+            <figure class="image is-4by5">
+              <img [src]="league.logo" [alt]="league.name">
+            </figure>
+          </div>
+          <div class="card-content p-2">
+            <p class="title is-6">{{ league.name }}</p>
+            <p class="subtitle is-7 has-text-right">{{ league.type }}</p>
+          </div>
+        </a>
+        <div class="control is-expanded">
+          <div class="select is-fullwidth">
+            <select #year>
+              <option *ngFor="let season of league.seasons" [value]="season.year">{{ season.year }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>

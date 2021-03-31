@@ -12,12 +12,17 @@ export class CountryComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   filterString: string = '';
   countries: Country[] = [];
+  loaded: boolean;
 
   constructor(private search: SearchService) { }
 
   ngOnInit(): void {
+    this.loaded = false;
     this.subscription = this.search.countriesFetched.subscribe(
-      (countries: Country[]) => this.countries = countries
+      (countries: Country[]) => {
+        this.countries = countries;
+        this.loaded = true;
+      }
     );
     this.search.fetchCountries();
   }

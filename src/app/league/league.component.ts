@@ -13,18 +13,21 @@ export class LeagueComponent implements OnInit {
   filterString: string = '';
   flagUrl: string = '';
   country: string = '';
+  loaded: boolean;
 
   constructor(private route: ActivatedRoute,
     private searchService: SearchService,
     private router: Router) { }
 
   ngOnInit(): void {
+    this.loaded = false;
     this.country = this.route.snapshot.queryParams['country'];
     this.searchService.fetchLeagues(this.country).subscribe(
       responseData => {
         this.flagUrl = responseData['response'][0].country.flag;
         responseData['response'].forEach(e => {
           this.leagues.push(new League(e.league.id, e.league.name, e.league.type, e.league.logo, e.seasons));
+          this.loaded = true;
         });
       }
     );

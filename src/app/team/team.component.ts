@@ -15,23 +15,26 @@ export class TeamComponent implements OnInit {
   league: string = '';
   standings: boolean = true;
   topPlayers: any[] = [];
+  loaded: boolean;
 
   constructor(private route: ActivatedRoute, private searchService: SearchService, private router: Router) { }
 
   ngOnInit(): void {
+    this.loaded = false;
     const params = this.route.snapshot.queryParams;
     this.season = params['season'];
+    this.searchService.fetchTopPlayers(params['leagueId'], this.season).subscribe(
+      responseData => {
+        this.topPlayers = responseData['response'];
+      }
+    );
     this.searchService.fetchTeamStandings(params['leagueId'], this.season).subscribe(
       responseData => {
         const r = responseData['response'][0]['league'];
         this.league = r['name'];
         this.logoUrl = r['logo'];
         this.teams = r['standings'][0];
-      }
-    );
-    this.searchService.fetchTopPlayers(params['leagueId'], this.season).subscribe(
-      responseData => {
-        this.topPlayers = responseData['response'];
+        this.loaded = true;
       }
     );
   }

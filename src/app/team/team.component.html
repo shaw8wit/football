@@ -1,111 +1,93 @@
-<!-- <div class="field">
-  <div class="control is-large">
-    <input class="input is-large" type="text" name="value" [(ngModel)]="filterString" placeholder="Filter Team"
-      autocomplete="off">
+<app-loader *ngIf="!loaded"></app-loader>
+<div *ngIf="loaded">
+
+  <section class="hero box m-2">
+    <div class="hero-body" [ngStyle]="{'background-image': getLogoUrl()}"
+      style="background-repeat: no-repeat; background-size: contain; background-position: right;">
+      <p class="title">
+        {{ league }}
+      </p>
+      <p class="subtitle">
+        {{ season }}
+      </p>
+    </div>
+  </section>
+
+  <div class="tabs is-centered is-boxed is-fullwidth mb-2">
+    <ul>
+      <li [ngClass]="{'is-active' : standings}">
+        <a (click)="toggleView()">Standings</a>
+      </li>
+      <li [ngClass]="{'is-active' : !standings}">
+        <a (click)="toggleView()">Top Players</a>
+      </li>
+    </ul>
   </div>
-</div>
-<ul class="columns is-multiline p-4">
-  <li class="column is-one-third" *ngFor="let t of teams">
-    <div class="card">
-      <a (click)="onSubmit(t.team.id)">
+
+  <div *ngIf="standings" class="columns">
+    <div class="column p-0">
+      <div style="display: grid">
+        <div class="table-container box p-0 m-3">
+          <table class="table is-striped is-hoverable is-fullwidth">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Club</th>
+                <th>MP</th>
+                <th>W</th>
+                <th>D</th>
+                <th>L</th>
+                <th>GF</th>
+                <th>GA</th>
+                <th>GD</th>
+                <th>Pts</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let t of teams" (click)="onSubmit(t.team.id)">
+                <td>{{ t.rank }}</td>
+                <td>
+                  <div class="columns">
+                    <div class="column">
+                      <figure class="image is-32x32">
+                        <img [src]="t.team.logo" [alt]="t.team.name">
+                      </figure>
+                    </div>
+                    <div class="column is-full">
+                      {{ t.team.name }}
+                    </div>
+                  </div>
+                </td>
+                <td>{{ t.all.played }}</td>
+                <td>{{ t.all.win }}</td>
+                <td>{{ t.all.draw }}</td>
+                <td>{{ t.all.lose }}</td>
+                <td>{{ t.all.goals.for }}</td>
+                <td>{{ t.all.goals.against }}</td>
+                <td>{{ t.goalsDiff }}</td>
+                <td>{{ t.points }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ul *ngIf="!standings" class="columns is-multiline p-3">
+    <li class="column is-one-third" *ngFor="let p of topPlayers">
+      <div class="card">
         <div class="card-image">
           <figure class="image is-square">
-            <img [src]="t.team.logo" [alt]="t.team.name">
+            <img [src]="p.player.photo" [alt]="p.player.name">
           </figure>
         </div>
-        <div class="card-content p-3">
-          <p class="title is-6 has-text-centered">{{ t.team.name }}</p>
+        <div class="card-content p-3 has-text-centered">
+          <p class="title is-6">{{ p.player.name }}</p>
+          <p class="subtitle is-7">Age: {{ p.player.age }}</p>
         </div>
-      </a>
-    </div>
-  </li>
-</ul> -->
-
-<section class="hero box m-2">
-  <div class="hero-body" [ngStyle]="{'background-image': getLogoUrl()}"
-    style="background-repeat: no-repeat; background-size: contain; background-position: right;">
-    <p class="title">
-      {{ league }}
-    </p>
-    <p class="subtitle">
-      {{ season }}
-    </p>
-  </div>
-</section>
-
-<div class="tabs is-centered is-boxed is-fullwidth mb-2">
-  <ul>
-    <li [ngClass]="{'is-active' : standings}">
-      <a (click)="toggleView()">Standings</a>
-    </li>
-    <li [ngClass]="{'is-active' : !standings}">
-      <a (click)="toggleView()">Top Players</a>
+      </div>
     </li>
   </ul>
-</div>
 
-<div *ngIf="standings" class="columns">
-  <div class="column p-0">
-    <div style="display: grid">
-      <div class="table-container box p-0 m-3">
-        <table class="table is-striped is-hoverable is-fullwidth">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Club</th>
-              <th>MP</th>
-              <th>W</th>
-              <th>D</th>
-              <th>L</th>
-              <th>GF</th>
-              <th>GA</th>
-              <th>GD</th>
-              <th>Pts</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let t of teams" (click)="onSubmit(t.team.id)">
-              <td>{{ t.rank }}</td>
-              <td>
-                <div class="columns">
-                  <div class="column">
-                    <figure class="image is-32x32">
-                      <img [src]="t.team.logo" [alt]="t.team.name">
-                    </figure>
-                  </div>
-                  <div class="column is-full">
-                    {{ t.team.name }}
-                  </div>
-                </div>
-              </td>
-              <td>{{ t.all.played }}</td>
-              <td>{{ t.all.win }}</td>
-              <td>{{ t.all.draw }}</td>
-              <td>{{ t.all.lose }}</td>
-              <td>{{ t.all.goals.for }}</td>
-              <td>{{ t.all.goals.against }}</td>
-              <td>{{ t.goalsDiff }}</td>
-              <td>{{ t.points }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
 </div>
-
-<ul *ngIf="!standings" class="columns is-multiline p-3">
-  <li class="column is-one-third" *ngFor="let p of topPlayers">
-    <div class="card">
-      <div class="card-image">
-        <figure class="image is-square">
-          <img [src]="p.player.photo" [alt]="p.player.name">
-        </figure>
-      </div>
-      <div class="card-content p-3 has-text-centered">
-        <p class="title is-6">{{ p.player.name }}</p>
-        <p class="subtitle is-7">Age: {{ p.player.age }}</p>
-      </div>
-    </div>
-  </li>
-</ul>

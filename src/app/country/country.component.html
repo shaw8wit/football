@@ -1,4 +1,6 @@
-<div class="field">
+<app-loader *ngIf="!loaded"></app-loader>
+
+<div *ngIf="loaded" class="field">
   <div class="control is-large">
     <input class="input is-large" type="text" name="value" [(ngModel)]="filterString" placeholder="Country Name"
       autocomplete="off">

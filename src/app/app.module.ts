@@ -13,6 +13,7 @@ import { LeagueComponent } from './league/league.component';
 import { TeamComponent } from './team/team.component';
 import { TeamInfoComponent } from './team/team-info/team-info.component';
 import { SplitPipe } from './global/split.pipe';
+import { LoaderComponent } from './global/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { SplitPipe } from './global/split.pipe';
     FavoriteComponent,
     TeamInfoComponent,
     FilterPipe,
-    SplitPipe
+    SplitPipe,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
