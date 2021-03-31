@@ -132,7 +132,7 @@
   <!-- * team players -->
   <div *ngIf="!stats">
     <ul class="columns is-multiline p-3">
-      <li class="column is-one-third" *ngFor="let p of players[currentPlayerPage]">
+      <li class="column is-one-third" *ngFor="let p of players[currentPlayerPage - 1]">
         <div class="card">
           <div class="card-image">
             <figure class="image is-square">
@@ -149,14 +149,13 @@
 
     <nav class="pagination is-centered m-0 p-0" role="navigation">
       <ul class="pagination-list">
-        <li *ngFor="let i of totalPlayerPage; let index = index">
-          <a class="pagination-link" (click)="loadPlayers(index)"
-            [ngClass]="{'is-current': currentPlayerPage == index}">
+        <li *ngFor="let i of players; let index = index">
+          <a class="pagination-link" (click)="loadPlayers(index + 1)"
+            [ngClass]="{'is-current': currentPlayerPage == index + 1}">
             {{ index + 1 }}
           </a>
         </li>
       </ul>
     </nav>
   </div>
-
 </div>
