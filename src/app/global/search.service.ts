@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { api_key } from '../const';
-import { Country } from '../country/country.model';
+import { Country } from '../countries/country.model';
 import { delay } from "rxjs/operators";
 
 @Injectable({

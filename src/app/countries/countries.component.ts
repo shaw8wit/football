@@ -4,11 +4,11 @@ import { SearchService } from '../global/search.service';
 import { Country } from './country.model';
 
 @Component({
-  selector: 'app-country',
-  templateUrl: './country.component.html',
-  styleUrls: ['./country.component.css']
+  selector: 'app-countries',
+  templateUrl: './countries.component.html',
+  styleUrls: ['./countries.component.css']
 })
-export class CountryComponent implements OnInit, OnDestroy {
+export class CountriesComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   filterString: string = '';
   countries: Country[] = [];
