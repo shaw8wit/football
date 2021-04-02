@@ -3,11 +3,11 @@ import { ActivatedRoute } from '@angular/router';
 import { SearchService } from 'src/app/global/search.service';
 
 @Component({
-  selector: 'app-team-info',
-  templateUrl: './team-info.component.html',
-  styleUrls: ['./team-info.component.css']
+  selector: 'app-team',
+  templateUrl: './team.component.html',
+  styleUrls: ['./team.component.css']
 })
-export class TeamInfoComponent implements OnInit {
+export class TeamComponent implements OnInit {
   team: any;
   params: any;
   players: any[] = [];

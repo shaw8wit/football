@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CountriesComponent } from './countries/countries.component';
-import { LeagueComponent } from './league/league.component';
-import { TeamInfoComponent } from './team/team-info/team-info.component';
-import { TeamComponent } from './team/team.component';
+import { LeaguesComponent } from './leagues/leagues.component';
+import { TeamComponent } from './leagues/league/team/team.component';
+import { LeagueComponent } from './leagues/league/league.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/countries', pathMatch: 'full' },
   { path: 'countries', component: CountriesComponent },
+  { path: 'leagues', component: LeaguesComponent },
   { path: 'league', component: LeagueComponent },
   { path: 'team', component: TeamComponent },
-  { path: 'team-info', component: TeamInfoComponent },
   { path: '*', redirectTo: '/countries' },
 ];
 

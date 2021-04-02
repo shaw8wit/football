@@ -4,11 +4,11 @@ import { SearchService } from '../global/search.service';
 import { League } from './league.model';
 
 @Component({
-  selector: 'app-league',
-  templateUrl: './league.component.html',
-  styleUrls: ['./league.component.css']
+  selector: 'app-leagues',
+  templateUrl: './leagues.component.html',
+  styleUrls: ['./leagues.component.css']
 })
-export class LeagueComponent implements OnInit {
+export class LeaguesComponent implements OnInit {
   leagues: League[] = [];
   filterString: string = '';
   flagUrl: string = '';
@@ -34,7 +34,7 @@ export class LeagueComponent implements OnInit {
   }
 
   onSubmit(id: string, year: string) {
-    this.router.navigate(['/team'], { queryParams: { 'leagueId': id, 'season': year } });
+    this.router.navigate(['/league'], { queryParams: { 'leagueId': id, 'season': year } });
   }
 
   getFlagUrl() {

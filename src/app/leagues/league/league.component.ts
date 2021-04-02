@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SearchService } from '../global/search.service';
+import { SearchService } from '../../global/search.service';
 
 @Component({
-  selector: 'app-team',
-  templateUrl: './team.component.html',
-  styleUrls: ['./team.component.css']
+  selector: 'app-league',
+  templateUrl: './league.component.html',
+  styleUrls: ['./league.component.css']
 })
-export class TeamComponent implements OnInit {
+export class LeagueComponent implements OnInit {
   teams: any[] = [];
   filterString: string = '';
   logoUrl: string = '';
@@ -40,7 +40,7 @@ export class TeamComponent implements OnInit {
   }
 
   onSubmit(id: string) {
-    this.router.navigate(['/team-info'], { queryParamsHandling: "merge", queryParams: { 'teamId': id } });
+    this.router.navigate(['/team'], { queryParamsHandling: "merge", queryParams: { 'teamId': id } });
   }
 
   getLogoUrl() {
