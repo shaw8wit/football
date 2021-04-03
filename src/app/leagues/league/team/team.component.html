@@ -132,7 +132,7 @@
 
   <!-- * team players -->
   <div *ngIf="!stats">
-    <app-loader *ngIf="loadingPlayers"></app-loader>
+    <app-loader [margin]=false *ngIf="loadingPlayers"></app-loader>
     <ul *ngIf="!loadingPlayers" class="columns is-multiline p-3">
       <li class="column is-one-quarter-widescreen is-one-third-desktop is-half-tablet"
         *ngFor="let p of players[currentPlayerPage - 1]">
