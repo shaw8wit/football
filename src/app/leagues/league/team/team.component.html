@@ -1,4 +1,4 @@
-<app-loader *ngIf="loadingTeam"></app-loader>
+<app-loader [margin]=true *ngIf="loadingTeam"></app-loader>
 <div *ngIf="!loadingTeam" class="box p-0 m-3">
 
   <section class="hero p-2 m-2">
@@ -134,7 +134,8 @@
   <div *ngIf="!stats">
     <app-loader *ngIf="loadingPlayers"></app-loader>
     <ul *ngIf="!loadingPlayers" class="columns is-multiline p-3">
-      <li class="column is-one-third" *ngFor="let p of players[currentPlayerPage - 1]">
+      <li class="column is-one-quarter-widescreen is-one-third-desktop is-half-tablet"
+        *ngFor="let p of players[currentPlayerPage - 1]">
         <div class="card">
           <div class="card-image">
             <figure class="image is-square">

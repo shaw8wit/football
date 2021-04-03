@@ -26,6 +26,7 @@ export class LeagueComponent implements OnInit {
     this.searchService.fetchTopPlayers(params['leagueId'], this.season).subscribe(
       responseData => {
         this.topPlayers = responseData['response'];
+        console.log(responseData);
       }
     );
     this.searchService.fetchTeamStandings(params['leagueId'], this.season).subscribe(

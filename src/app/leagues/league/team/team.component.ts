@@ -49,6 +49,7 @@ export class TeamComponent implements OnInit {
         .fetchPlayers(this.params['leagueId'], this.params['season'], this.params['teamId'], index.toString())
         .subscribe(
           responseData => {
+            console.log(responseData);
             if (notInitialized) {
               const total = +responseData['paging']['total'];
               for (let i = 0; i < total; i++) this.players.push([]);
@@ -57,6 +58,6 @@ export class TeamComponent implements OnInit {
             this.loadingPlayers = false;
           }
         );
-    }
+    } else this.loadingPlayers = false;
   }
 }
