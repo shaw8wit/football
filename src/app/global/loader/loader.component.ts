@@ -14,7 +14,7 @@ export class LoaderComponent implements OnInit {
   }
 
   getMargin() {
-    if (this.margin) return 30;
+    if (this.margin) return 35;
     return 0;
   }
 }

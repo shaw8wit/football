@@ -8,7 +8,7 @@ import { FilterPipe } from './global/filter.pipe';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { PlayerComponent } from './player/player.component';
+import { PlayerInfoComponent } from './player-info/player-info.component';
 import { LeaguesComponent } from './leagues/leagues.component';
 import { LoaderComponent } from './global/loader/loader.component';
 import { LeagueComponent } from './leagues/league/league.component';
@@ -23,7 +23,7 @@ import { FavoriteComponent } from './global/favorite/favorite.component';
     AppComponent,
     TeamComponent,
     LoaderComponent,
-    PlayerComponent,
+    PlayerInfoComponent,
     LeagueComponent,
     LeaguesComponent,
     FavoriteComponent,

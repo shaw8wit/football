@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-player',
-  templateUrl: './player.component.html',
-  styleUrls: ['./player.component.css']
+  selector: 'app-player-info',
+  templateUrl: './player-info.component.html',
+  styleUrls: ['./player-info.component.css']
 })
-export class PlayerComponent implements OnInit {
+export class PlayerInfoComponent implements OnInit {
   @Input() player: any;
   @Output() close = new EventEmitter<void>();
 
