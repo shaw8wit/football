@@ -1,17 +1,51 @@
-<div class="backdrop">
+<!-- <div class="backdrop">
   <div class="alert-box">
     <article class="message is-dark">
       <div class="message-header">
-        <p>Hello World</p>
+        <p>{{ player.player.name }}</p>
         <button class="delete" aria-label="delete" (click)="onClose()"></button>
       </div>
       <div class="message-body">
-
-        placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum
-        <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus. Donec sodales, arcu et
-        sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et
-        sem eget, facilisis sodales sem.
+        <section class="hero p-2 m-2">
+          <div class="hero-body has-text-right" [ngStyle]="{'background-image': getUrl()}" style="background-repeat: no-repeat;
+        background-size: auto;">
+            <p class="title">
+              {{ player.player.firstname }} {{ player.player.lastname }}
+            </p>
+            <p class="subtitle">
+              {{ team.league.name }} - {{ team.league.season }}
+            </p>
+          </div>
+        </section>
       </div>
     </article>
+  </div>
+</div> -->
+
+<div class="backdrop">
+  <div class="alert-box">
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title"><strong>{{ player.player.name }}</strong>, {{ player.player.nationality }}</p>
+        <button class="delete" aria-label="close" (click)="onClose()"></button>
+      </header>
+      <section class="modal-card-body p-3">
+        <section class="hero">
+          <div class="hero-body has-text-right" [ngStyle]="{'background-image': getUrl()}"
+            style="background-repeat: no-repeat; background-size: auto;">
+            <p class="title">
+              {{ player.player.firstname }} {{ player.player.lastname }}
+            </p>
+            <p class="subtitle">
+              {{ player.player.age }} | {{ player.player.height }} | {{ player.player.weight }}
+            </p>
+          </div>
+        </section>
+      </section>
+      <footer class="modal-card-foot">
+        <button class="button is-success">Save</button>
+        <button class="button">Cancel</button>
+      </footer>
+    </div>
   </div>
 </div>

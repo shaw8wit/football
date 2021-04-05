@@ -9,12 +9,17 @@
 }
 
 .alert-box {
-  position: fixed;
-  top: 5vh;
-  left: 5vw;
-  width: 90vw;
-  height: 90vh;
+  margin-left: auto;
   z-index: 100;
   background-color: transparent;
-  overflow: auto;
+}
+
+.modal-card {
+  margin-top: 3vh;
+  height: 94vh;
+  width: 90vw;
+}
+
+.delete {
+  background-color: rgba(216, 33, 33, 0.7);
 }

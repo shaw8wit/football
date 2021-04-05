@@ -18,4 +18,8 @@ export class PlayerInfoComponent implements OnInit {
   onClose() {
     this.close.emit();
   }
+
+  getUrl() {
+    return "url('" + this.player.player.photo + "')";
+  }
 }
