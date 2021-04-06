@@ -8,11 +8,13 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class PlayerInfoComponent implements OnInit {
   @Input() player: any;
   @Output() close = new EventEmitter<void>();
+  stats: any;
 
   constructor() { }
 
   ngOnInit(): void {
     console.log(this.player);
+    this.stats = this.player.statistics[0];
   }
 
   onClose() {

@@ -1,0 +1,119 @@
+<!-- <div class="backdrop">
+  <div class="alert-box">
+    <article class="message is-dark">
+      <div class="message-header">
+        <p>{{ player.player.name }}</p>
+        <button class="delete" aria-label="delete" (click)="onClose()"></button>
+      </div>
+      <div class="message-body">
+        <section class="hero p-2 m-2">
+          <div class="hero-body has-text-right" [ngStyle]="{'background-image': getUrl()}" style="background-repeat: no-repeat;
+        background-size: auto;">
+            <p class="title">
+              {{ player.player.firstname }} {{ player.player.lastname }}
+            </p>
+            <p class="subtitle">
+              {{ team.league.name }} - {{ team.league.season }}
+            </p>
+          </div>
+        </section>
+      </div>
+    </article>
+  </div>
+</div> -->
+
+<div class="backdrop">
+  <div class="alert-box">
+    <div class="modal-card is-dark">
+      <header class="modal-card-head">
+        <p class="modal-card-title">
+          <strong>{{ player.player.name }}</strong>, {{ player.player.nationality }}
+        </p>
+        <button class="delete" aria-label="close" (click)="onClose()"></button>
+      </header>
+      <section class="modal-card-body p-2">
+        <section class="hero">
+          <div class="hero-body has-text-right" [ngStyle]="{'background-image': getUrl()}"
+            style="background-repeat: no-repeat; background-size: auto;">
+            <p class="title">
+              {{ player.player.firstname }} {{ player.player.lastname }}
+            </p>
+            <p class="subtitle">
+              Age: <strong>{{ player.player.age }}</strong> |
+              Height: <strong>{{ player.player.height }}</strong> |
+              Weight: <strong>{{ player.player.weight }}</strong>
+            </p>
+          </div>
+        </section>
+        <table class="table is-fullwidth has-text-centered">
+          <tbody>
+            <tr>
+              <th>Goals</th>
+              <td>total: {{ stats.goals.total }}</td>
+              <td>assists: {{ stats.goals.assists }}</td>
+              <td>saves: {{ stats.goals.saves }}</td>
+            </tr>
+            <tr>
+              <th>Penalty</th>
+              <td>won: {{ stats.penalty.won }}</td>
+              <td>scored: {{ stats.penalty.scored }}</td>
+              <td>missed: {{ stats.penalty.missed }}</td>
+            </tr>
+            <tr>
+              <th>Shots</th>
+              <td>total: {{ stats.shots.total }}</td>
+              <td>on: {{ stats.shots.on }}</td>
+              <td></td>
+            </tr>
+            <tr>
+              <th>Dribbles</th>
+              <td>attempts: {{ stats.dribbles.attempts }}</td>
+              <td>success: {{ stats.dribbles.success }}</td>
+              <td>past: {{ stats.dribbles.past }}</td>
+            </tr>
+            <tr>
+              <th>Tackles</th>
+              <td>total: {{ stats.tackles.total }}</td>
+              <td>interceptions: {{ stats.tackles.interceptions }}</td>
+              <td>blocks: {{ stats.tackles.blocks }}</td>
+            </tr>
+            <tr>
+              <th>Duels</th>
+              <td>total: {{ stats.duels.total }}</td>
+              <td>won: {{ stats.duels.won }}</td>
+              <td></td>
+            </tr>
+            <tr>
+              <th>Cards</th>
+              <td>yellow: {{ stats.cards.yellow }}</td>
+              <td>red: {{ stats.cards.red }}</td>
+              <td>yellowred: {{ stats.cards.yellowred }}</td>
+            </tr>
+            <tr>
+              <th>Passes</th>
+              <td>total: {{ stats.passes.total }}</td>
+              <td>key: {{ stats.passes.key }}</td>
+              <td>accuracy: {{ stats.passes.accuracy }} %</td>
+            </tr>
+            <tr>
+              <th>Fouls</th>
+              <td>committed: {{ stats.fouls.committed }}</td>
+              <td>drawn: {{ stats.fouls.drawn }}</td>
+              <td></td>
+            </tr>
+            <tr>
+              <th>Substitutes</th>
+              <td>bench: {{ stats.substitutes.bench }}</td>
+              <td>in: {{ stats.substitutes.in }}</td>
+              <td>out: {{ stats.substitutes.out }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <footer class="modal-card-foot">
+        <button class="button is-success">Save</button>
+        <button class="button">Cancel</button>
+      </footer>
+    </div>
+  </div>
+</div>

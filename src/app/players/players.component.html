@@ -1,6 +1,6 @@
 <app-player-info (close)="togglePlayerDisplay()" [player]="displayedPlayer" *ngIf="displayedPlayer"></app-player-info>
 
-<ul class="columns is-multiline p-2">
+<ul class="columns is-multiline p-3">
   <li *ngFor="let p of players" class="column is-one-quarter-widescreen is-one-third-desktop is-half-tablet">
     <div class="card" (click)="togglePlayerDisplay(p)">
       <div class="card-image">
