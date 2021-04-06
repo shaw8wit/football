@@ -134,7 +134,9 @@
   <!-- * team players -->
   <div *ngIf="!stats">
     <app-loader [margin]=false *ngIf="loadingPlayers"></app-loader>
-    <ul *ngIf="!loadingPlayers" class="columns is-multiline p-3">
+    <app-players [players]="players[currentPlayerPage - 1]" *ngIf="!loadingPlayers"></app-players>
+
+    <!-- <ul *ngIf="!loadingPlayers" class="columns is-multiline p-3">
       <li class="column is-one-quarter-widescreen is-one-third-desktop is-half-tablet"
         *ngFor="let p of players[currentPlayerPage - 1]">
         <div class="card">
@@ -149,8 +151,7 @@
           </div>
         </div>
       </li>
-    </ul>
-
+    </ul> -->
     <nav class="pagination is-centered m-0 p-0" role="navigation">
       <ul class="pagination-list">
         <li *ngFor="let i of players; let index = index">

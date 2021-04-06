@@ -16,7 +16,7 @@ export class LeagueComponent implements OnInit {
   standings: boolean = true;
   topPlayers: any[] = [];
   loaded: boolean;
-  displayedPlayer: any;
+  // displayedPlayer: any;
 
   constructor(private route: ActivatedRoute, private searchService: SearchService, private router: Router) { }
 
@@ -53,7 +53,7 @@ export class LeagueComponent implements OnInit {
     this.standings = !this.standings;
   }
 
-  togglePlayerDisplay(p: any = null) {
-    this.displayedPlayer = p;
-  }
+  // togglePlayerDisplay(p: any = null) {
+  //   this.displayedPlayer = p;
+  // }
 }

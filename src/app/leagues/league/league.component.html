@@ -75,7 +75,7 @@
     </div>
   </div>
 
-  <app-player-info (close)="togglePlayerDisplay()" [player]="displayedPlayer" *ngIf="displayedPlayer"></app-player-info>
+  <!-- <app-player-info (close)="togglePlayerDisplay()" [player]="displayedPlayer" *ngIf="displayedPlayer"></app-player-info>
 
   <ul *ngIf="!standings" class="columns is-multiline p-3">
     <li *ngFor="let p of topPlayers" class="column is-one-quarter-widescreen is-one-third-desktop is-half-tablet">
@@ -91,6 +91,8 @@
         </div>
       </div>
     </li>
-  </ul>
+  </ul> -->
+
+  <app-players *ngIf="!standings" [players]="topPlayers"></app-players>
 
 </div>

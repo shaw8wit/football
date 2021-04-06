@@ -1,0 +1,34 @@
+<app-player-info (close)="togglePlayerDisplay()" [player]="displayedPlayer" *ngIf="displayedPlayer"></app-player-info>
+
+<ul class="columns is-multiline p-2">
+  <li *ngFor="let p of players" class="column is-one-quarter-widescreen is-one-third-desktop is-half-tablet">
+    <div class="card" (click)="togglePlayerDisplay(p)">
+      <div class="card-image">
+        <figure class="image is-square">
+          <img [src]="p.player.photo" [alt]="p.player.name">
+        </figure>
+      </div>
+      <div class="card-content p-3 has-text-centered">
+        <p class="title is-6">{{ p.player.name }}</p>
+        <p class="subtitle is-7">Age: {{ p.player.age }}</p>
+      </div>
+    </div>
+  </li>
+</ul>
+
+<!-- <ul *ngIf="!loadingPlayers" class="columns is-multiline p-3">
+  <li class="column is-one-quarter-widescreen is-one-third-desktop is-half-tablet"
+    *ngFor="let p of players[currentPlayerPage - 1]">
+    <div class="card">
+      <div class="card-image">
+        <figure class="image is-square">
+          <img [src]="p.player.photo" [alt]="p.player.name">
+        </figure>
+      </div>
+      <div class="card-content p-3 has-text-centered">
+        <p class="title is-6">{{ p.player.name }}</p>
+        <p class="subtitle is-7">Age: {{ p.player.age }}</p>
+      </div>
+    </div>
+  </li>
+</ul> -->

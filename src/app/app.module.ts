@@ -15,6 +15,7 @@ import { LeagueComponent } from './leagues/league/league.component';
 import { TeamComponent } from './leagues/league/team/team.component';
 import { CountriesComponent } from './countries/countries.component';
 import { FavoriteComponent } from './global/favorite/favorite.component';
+import { PlayersComponent } from './players/players.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { FavoriteComponent } from './global/favorite/favorite.component';
     LeaguesComponent,
     FavoriteComponent,
     CountriesComponent,
+    PlayersComponent,
   ],
   imports: [
     FormsModule,
