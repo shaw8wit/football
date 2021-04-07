@@ -45,74 +45,97 @@
             </p>
           </div>
         </section>
+
+        <div class="box">
+          <ul class="columns is-multiline p-3 has-text-centered">
+            <li class="column is-one-third-desktop is-half-tablet">
+              Appearences: <strong class="tag is-primary">{{ stats.games.appearences }}</strong>
+            </li>
+            <li class="column is-one-third-desktop is-half-tablet">
+              Lineups: <strong class="tag is-info is-light">{{ stats.games.lineups }}</strong>
+            </li>
+            <li class="column is-one-third-desktop is-half-tablet">
+              Minutes: <strong class="tag is-success">{{ stats.games.minutes }}</strong>
+            </li>
+            <li class="column is-one-third-desktop is-half-tablet">
+              Captain: <strong class="tag is-primary is-light">{{ stats.games.captain !== null }}</strong>
+            </li>
+            <li class="column is-one-third-desktop is-half-tablet">
+              Position: <strong class="tag is-info">{{ stats.games.position }}</strong>
+            </li>
+            <li class="column is-one-third-desktop is-half-tablet">
+              Rating: <strong class="tag is-success is-light">{{ stats.games.rating }}</strong>
+            </li>
+          </ul>
+        </div>
+
         <table class="table is-fullwidth has-text-centered">
           <tbody>
             <tr>
               <th>Goals</th>
-              <td>total: {{ stats.goals.total }}</td>
-              <td>assists: {{ stats.goals.assists }}</td>
-              <td>saves: {{ stats.goals.saves }}</td>
+              <td>total: <strong>{{ stats.goals.total }}</strong></td>
+              <td>assists: <strong>{{ stats.goals.assists }}</strong></td>
+              <td>saves: <strong>{{ stats.goals.saves }}</strong></td>
             </tr>
             <tr>
               <th>Penalty</th>
-              <td>won: {{ stats.penalty.won }}</td>
-              <td>scored: {{ stats.penalty.scored }}</td>
-              <td>missed: {{ stats.penalty.missed }}</td>
+              <td>won: <strong>{{ stats.penalty.won }}</strong></td>
+              <td>scored: <strong>{{ stats.penalty.scored }}</strong></td>
+              <td>missed: <strong>{{ stats.penalty.missed }}</strong></td>
             </tr>
             <tr>
               <th>Shots</th>
-              <td>total: {{ stats.shots.total }}</td>
-              <td>on: {{ stats.shots.on }}</td>
+              <td>total: <strong>{{ stats.shots.total }}</strong></td>
+              <td>on: <strong>{{ stats.shots.on }}</strong></td>
               <td></td>
             </tr>
             <tr>
               <th>Dribbles</th>
-              <td>attempts: {{ stats.dribbles.attempts }}</td>
-              <td>success: {{ stats.dribbles.success }}</td>
-              <td>past: {{ stats.dribbles.past }}</td>
+              <td>attempts: <strong>{{ stats.dribbles.attempts }}</strong></td>
+              <td>success: <strong>{{ stats.dribbles.success }}</strong></td>
+              <td>past: <strong>{{ stats.dribbles.past }}</strong></td>
             </tr>
             <tr>
               <th>Tackles</th>
-              <td>total: {{ stats.tackles.total }}</td>
-              <td>interceptions: {{ stats.tackles.interceptions }}</td>
-              <td>blocks: {{ stats.tackles.blocks }}</td>
+              <td>total: <strong>{{ stats.tackles.total }}</strong></td>
+              <td>interceptions: <strong>{{ stats.tackles.interceptions }}</strong></td>
+              <td>blocks: <strong>{{ stats.tackles.blocks }}</strong></td>
             </tr>
             <tr>
               <th>Duels</th>
-              <td>total: {{ stats.duels.total }}</td>
-              <td>won: {{ stats.duels.won }}</td>
+              <td>total: <strong>{{ stats.duels.total }}</strong></td>
+              <td>won: <strong>{{ stats.duels.won }}</strong></td>
               <td></td>
             </tr>
             <tr>
               <th>Cards</th>
-              <td>yellow: {{ stats.cards.yellow }}</td>
-              <td>red: {{ stats.cards.red }}</td>
-              <td>yellowred: {{ stats.cards.yellowred }}</td>
+              <td>yellow: <strong>{{ stats.cards.yellow }}</strong></td>
+              <td>red: <strong>{{ stats.cards.red }}</strong></td>
+              <td>yellowred: <strong>{{ stats.cards.yellowred }}</strong></td>
             </tr>
             <tr>
               <th>Passes</th>
-              <td>total: {{ stats.passes.total }}</td>
-              <td>key: {{ stats.passes.key }}</td>
-              <td>accuracy: {{ stats.passes.accuracy }} %</td>
+              <td>total: <strong>{{ stats.passes.total }}</strong></td>
+              <td>key: <strong>{{ stats.passes.key }}</strong></td>
+              <td>accuracy: <strong>{{ stats.passes.accuracy }} %</strong></td>
             </tr>
             <tr>
               <th>Fouls</th>
-              <td>committed: {{ stats.fouls.committed }}</td>
-              <td>drawn: {{ stats.fouls.drawn }}</td>
+              <td>committed: <strong>{{ stats.fouls.committed }}</strong></td>
+              <td>drawn: <strong>{{ stats.fouls.drawn }}</strong></td>
               <td></td>
             </tr>
             <tr>
               <th>Substitutes</th>
-              <td>bench: {{ stats.substitutes.bench }}</td>
-              <td>in: {{ stats.substitutes.in }}</td>
-              <td>out: {{ stats.substitutes.out }}</td>
+              <td>bench: <strong>{{ stats.substitutes.bench }}</strong></td>
+              <td>in: <strong>{{ stats.substitutes.in }}</strong></td>
+              <td>out: <strong>{{ stats.substitutes.out }}</strong></td>
             </tr>
           </tbody>
         </table>
       </section>
       <footer class="modal-card-foot">
-        <button class="button is-success">Save</button>
-        <button class="button">Cancel</button>
+        {{ stats.league.name }} | {{ stats.team.name }} | {{ stats.league.season }}
       </footer>
     </div>
   </div>
