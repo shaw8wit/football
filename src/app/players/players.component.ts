@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class PlayersComponent implements OnInit {
   @Input() players: any;
   displayedPlayer: any = null;
+  filterString: string = '';
 
   constructor() { }
 

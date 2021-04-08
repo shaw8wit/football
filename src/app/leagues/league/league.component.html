@@ -25,51 +25,60 @@
     </ul>
   </div>
 
-  <div *ngIf="standings" class="columns">
-    <div class="column p-0">
-      <div style="display: grid">
-        <div class="table-container box p-0 m-3">
-          <table class="table is-striped is-hoverable is-fullwidth">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Club</th>
-                <th>MP</th>
-                <th>W</th>
-                <th>D</th>
-                <th>L</th>
-                <th>GF</th>
-                <th>GA</th>
-                <th>GD</th>
-                <th>Pts</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let t of teams" (click)="onSubmit(t.team.id)">
-                <td>{{ t.rank }}</td>
-                <td>
-                  <div class="columns">
-                    <div class="column">
-                      <figure class="image is-32x32">
-                        <img [src]="t.team.logo" [alt]="t.team.name">
-                      </figure>
+  <div *ngIf="standings">
+    <div class="field">
+      <div class="control is-medium">
+        <input class="input is-medium has-text-centered" type="text" name="value" [(ngModel)]="filterString"
+          placeholder="Team Name" autocomplete="off">
+      </div>
+    </div>
+
+    <div class="columns">
+      <div class="column p-0">
+        <div style="display: grid">
+          <div class="table-container box p-0 m-3">
+            <table class="table is-striped is-hoverable is-fullwidth">
+              <thead style="cursor: default;">
+                <tr>
+                  <th>#</th>
+                  <th>Club</th>
+                  <th>MP</th>
+                  <th>W</th>
+                  <th>D</th>
+                  <th>L</th>
+                  <th>GF</th>
+                  <th>GA</th>
+                  <th>GD</th>
+                  <th>Pts</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let t of teams | filter: filterString: 'name': 'team'" (click)="onSubmit(t.team.id)">
+                  <td>{{ t.rank }}</td>
+                  <td>
+                    <div class="columns">
+                      <div class="column">
+                        <figure class="image is-32x32">
+                          <img [src]="t.team.logo" [alt]="t.team.name">
+                        </figure>
+                      </div>
+                      <div class="column is-full">
+                        {{ t.team.name }}
+                      </div>
                     </div>
-                    <div class="column is-full">
-                      {{ t.team.name }}
-                    </div>
-                  </div>
-                </td>
-                <td>{{ t.all.played }}</td>
-                <td>{{ t.all.win }}</td>
-                <td>{{ t.all.draw }}</td>
-                <td>{{ t.all.lose }}</td>
-                <td>{{ t.all.goals.for }}</td>
-                <td>{{ t.all.goals.against }}</td>
-                <td>{{ t.goalsDiff }}</td>
-                <td>{{ t.points }}</td>
-              </tr>
-            </tbody>
-          </table>
+                  </td>
+                  <td>{{ t.all.played }}</td>
+                  <td>{{ t.all.win }}</td>
+                  <td>{{ t.all.draw }}</td>
+                  <td>{{ t.all.lose }}</td>
+                  <td>{{ t.all.goals.for }}</td>
+                  <td>{{ t.all.goals.against }}</td>
+                  <td>{{ t.goalsDiff }}</td>
+                  <td>{{ t.points }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
