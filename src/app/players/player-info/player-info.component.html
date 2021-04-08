@@ -47,24 +47,28 @@
         </section>
 
         <div class="box">
-          <ul class="columns is-multiline p-3 has-text-centered">
+          <ul class="columns is-multiline p-3 has-text-centered are-medium">
             <li class="column is-one-third-desktop is-half-tablet">
-              Appearences: <strong class="tag is-primary">{{ stats.games.appearences }}</strong>
+              Appearences: <strong class="tag is-dark">{{ stats.games.appearences }}</strong>
             </li>
             <li class="column is-one-third-desktop is-half-tablet">
-              Lineups: <strong class="tag is-info is-light">{{ stats.games.lineups }}</strong>
+              Lineups: <strong class="tag is-light">{{ stats.games.lineups }}</strong>
             </li>
             <li class="column is-one-third-desktop is-half-tablet">
-              Minutes: <strong class="tag is-success">{{ stats.games.minutes }}</strong>
+              Minutes: <strong class="tag is-link is-light">{{ stats.games.minutes }}</strong>
             </li>
             <li class="column is-one-third-desktop is-half-tablet">
               Captain: <strong class="tag is-primary is-light">{{ stats.games.captain !== null }}</strong>
             </li>
             <li class="column is-one-third-desktop is-half-tablet">
-              Position: <strong class="tag is-info">{{ stats.games.position }}</strong>
+              Position: <strong class="tag is-info is-light">{{ stats.games.position }}</strong>
             </li>
             <li class="column is-one-third-desktop is-half-tablet">
-              Rating: <strong class="tag is-success is-light">{{ stats.games.rating }}</strong>
+              Rating:
+              <strong class="tag is-light"
+                [ngClass]="stats.games.rating > 6.67 ? 'is-success' : stats.games.rating > 3.34 ? 'is-warning' : 'is-danger'">
+                {{ stats.games.rating }}
+              </strong>
             </li>
           </ul>
         </div>

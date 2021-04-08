@@ -13,7 +13,7 @@ export class PlayerInfoComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.player);
+    // console.log(this.player);
     this.stats = this.player.statistics[0];
   }
 
