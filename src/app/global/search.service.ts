@@ -105,4 +105,16 @@ export class SearchService {
       }
     );
   }
+
+  fetchTrophies(playerId: string) {
+    let params = new HttpParams();
+    params = params.append('player', playerId);
+    return this.http.get(
+      this.base_url + 'trophies',
+      {
+        headers: new HttpHeaders({ "x-rapidapi-key": api_key }),
+        params: params
+      }
+    );
+  }
 }
