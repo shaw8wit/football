@@ -10,7 +10,7 @@
 <ul class="columns is-multiline p-3">
   <li *ngFor="let p of players | filter: filterString: 'name': 'player'"
     class="column is-one-quarter-widescreen is-one-third-desktop is-half-tablet">
-    <div class="card" (click)="togglePlayerDisplay(p)">
+    <div class="card" style="cursor: pointer;" (click)="togglePlayerDisplay(p)">
       <div class="card-image">
         <figure class="image is-square">
           <img [src]="p.player.photo" [alt]="p.player.name">

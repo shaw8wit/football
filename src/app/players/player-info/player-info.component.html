@@ -137,6 +137,31 @@
             </tr>
           </tbody>
         </table>
+
+        <h3 class="title box mb-2">Achievements</h3>
+        <table class="table is-striped is-hoverable is-fullwidth">
+          <thead>
+            <tr>
+              <th>Season</th>
+              <th>League</th>
+              <th>Country</th>
+              <th>Place</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let a of achievements">
+              <td>{{ a.season }}</td>
+              <td>{{ a.league }}</td>
+              <td>{{ a.country }}</td>
+              <td>
+                <span class="tag is-medium" [ngClass]="a.place === 'Winner' ? 'is-success' : 'is-link'">
+                  {{ a.place }}
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
       </section>
       <footer class="modal-card-foot">
         {{ stats.league.name }} | {{ stats.team.name }} | {{ stats.league.season }}

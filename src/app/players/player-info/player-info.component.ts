@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { SearchService } from 'src/app/global/search.service';
 
 @Component({
   selector: 'app-player-info',
@@ -9,11 +10,14 @@ export class PlayerInfoComponent implements OnInit {
   @Input() player: any;
   @Output() close = new EventEmitter<void>();
   stats: any;
+  achievements: any[] = [];
 
-  constructor() { }
+  constructor(private searchService: SearchService) { }
 
   ngOnInit(): void {
-    // console.log(this.player);
+    this.searchService.fetchTrophies(this.player.player.id).subscribe(
+      responseData => this.achievements = responseData['response']
+    );
     this.stats = this.player.statistics[0];
   }
 
