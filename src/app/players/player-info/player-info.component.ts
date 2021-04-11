@@ -11,12 +11,19 @@ export class PlayerInfoComponent implements OnInit {
   @Output() close = new EventEmitter<void>();
   stats: any;
   achievements: any[] = [];
+  transfers: any[] = [];
 
   constructor(private searchService: SearchService) { }
 
   ngOnInit(): void {
     this.searchService.fetchTrophies(this.player.player.id).subscribe(
       responseData => this.achievements = responseData['response']
+    );
+    this.searchService.fetchTransfers(this.player.player.id).subscribe(
+      responseData => {
+        const temp = responseData['response'][0];
+        if (temp) this.transfers = temp['transfers'];
+      }
     );
     this.stats = this.player.statistics[0];
   }

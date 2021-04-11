@@ -117,4 +117,16 @@ export class SearchService {
       }
     );
   }
+
+  fetchTransfers(playerId: string) {
+    let params = new HttpParams();
+    params = params.append('player', playerId);
+    return this.http.get(
+      this.base_url + 'transfers',
+      {
+        headers: new HttpHeaders({ "x-rapidapi-key": api_key }),
+        params: params
+      }
+    );
+  }
 }

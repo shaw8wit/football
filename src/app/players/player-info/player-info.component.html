@@ -138,31 +138,82 @@
           </tbody>
         </table>
 
-        <h3 class="title box mb-2">Achievements</h3>
-        <table class="table is-striped is-hoverable is-fullwidth">
-          <thead>
-            <tr>
-              <th>Season</th>
-              <th>League</th>
-              <th>Country</th>
-              <th>Place</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let a of achievements">
-              <td>{{ a.season }}</td>
-              <td>{{ a.league }}</td>
-              <td>{{ a.country }}</td>
-              <td>
-                <span class="tag is-medium" [ngClass]="a.place === 'Winner' ? 'is-success' : 'is-link'">
-                  {{ a.place }}
-                </span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <details *ngIf="achievements.length" class="mb-1 p-1">
+          <summary class="title box mb-1" style="cursor: pointer;">Achievements</summary>
+          <table class="table is-striped is-hoverable is-fullwidth">
+            <thead>
+              <tr>
+                <th>Season</th>
+                <th>Country</th>
+                <th>League</th>
+                <th>Place</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let a of achievements">
+                <td>{{ a.season }}</td>
+                <td>{{ a.country }}</td>
+                <td>{{ a.league }}</td>
+                <td>
+                  <span class="tag is-medium" [ngClass]="a.place === 'Winner' ? 'is-success' : 'is-link'">
+                    {{ a.place }}
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </details>
 
+        <details *ngIf="transfers.length" class="mb-1 p-1">
+          <summary class="title box mb-1" style="cursor: pointer;">Transfers</summary>
+          <table class="table is-striped is-hoverable is-fullwidth">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Out</th>
+                <th>In</th>
+                <th>Place</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let t of transfers">
+                <td>{{ t.date }}</td>
+                <td>
+                  <div class="columns">
+                    <div class="column">
+                      <figure class="image is-32x32">
+                        <img [src]="t.teams.out.logo" [alt]="t.teams.out.name">
+                      </figure>
+                    </div>
+                    <div class="column is-full">
+                      {{ t.teams.out.name }}
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="columns">
+                    <div class="column">
+                      <figure class="image is-32x32">
+                        <img [src]="t.teams.in.logo" [alt]="t.teams.in.name">
+                      </figure>
+                    </div>
+                    <div class="column is-full">
+                      {{ t.teams.in.name }}
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <span class="tag is-medium"
+                    [ngClass]="t.type === 'Free' ? 'is-danger' : t.type === 'N/A' ? 'is-warning' : 'is-primary'">
+                    {{ t.type }}
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </details>
       </section>
+
       <footer class="modal-card-foot">
         {{ stats.league.name }} | {{ stats.team.name }} | {{ stats.league.season }}
       </footer>
