@@ -16,16 +16,19 @@
 
   <div class="tabs is-centered is-boxed is-fullwidth mb-2">
     <ul>
-      <li [ngClass]="{'is-active' : standings}">
-        <a (click)="toggleView()">Standings</a>
+      <li [ngClass]="{'is-active' : screenType === ScreenType.Standings}">
+        <a (click)="toggleView(ScreenType.Standings)">Standings</a>
       </li>
-      <li [ngClass]="{'is-active' : !standings}">
-        <a (click)="toggleView()">Top Players</a>
+      <li [ngClass]="{'is-active' : screenType === ScreenType.TopGoals}">
+        <a (click)="toggleView(ScreenType.TopGoals)">Top Goals</a>
+      </li>
+      <li [ngClass]="{'is-active' : screenType === ScreenType.TopAssists}">
+        <a (click)="toggleView(ScreenType.TopAssists)">Top Assists</a>
       </li>
     </ul>
   </div>
 
-  <div *ngIf="standings">
+  <div *ngIf="screenType === ScreenType.Standings">
     <div class="field">
       <div class="control is-medium">
         <input class="input is-medium has-text-centered" type="text" name="value" [(ngModel)]="filterString"
@@ -41,16 +44,16 @@
               <thead style="cursor: default;">
                 <tr>
                   <!-- <abbr title="Played">Pld</abbr> ! use this  -->
-                  <th>#</th>
+                  <th><abbr title="Standing">#</abbr></th>
                   <th>Club</th>
-                  <th>MP</th>
-                  <th>W</th>
-                  <th>D</th>
-                  <th>L</th>
-                  <th>GF</th>
-                  <th>GA</th>
-                  <th>GD</th>
-                  <th>Pts</th>
+                  <th><abbr title="Matches Played">MP</abbr></th>
+                  <th><abbr title="Matches Won">W</abbr></th>
+                  <th><abbr title="Matches Drawn">D</abbr></th>
+                  <th><abbr title="Matches Lost">L</abbr></th>
+                  <th><abbr title="Goals Scored">GF</abbr></th>
+                  <th><abbr title="Goals Conceded">GA</abbr></th>
+                  <th><abbr title="Goal Difference">GD</abbr></th>
+                  <th><abbr title="Points">Pts</abbr></th>
                 </tr>
               </thead>
               <tbody>
@@ -103,6 +106,8 @@
     </li>
   </ul> -->
 
-  <app-players *ngIf="!standings" [players]="topPlayers"></app-players>
+  <app-players *ngIf="screenType === ScreenType.TopGoals" [players]="topGoals"></app-players>
+
+  <app-players *ngIf="screenType === ScreenType.TopAssists" [players]="topAssists"></app-players>
 
 </div>

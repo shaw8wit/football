@@ -5,3 +5,7 @@ input {
 tr {
   cursor: pointer;
 }
+
+.is-active {
+  cursor: default;
+}

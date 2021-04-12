@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SearchService } from '../../global/search.service';
 
+enum ScreenType {
+  Standings,
+  TopGoals,
+  TopAssists,
+};
 @Component({
   selector: 'app-league',
   templateUrl: './league.component.html',
@@ -13,8 +18,9 @@ export class LeagueComponent implements OnInit {
   logoUrl: string = '';
   season: string = '';
   league: string = '';
-  standings: boolean = true;
-  topPlayers: any[] = [];
+  screenType: ScreenType = ScreenType.Standings;
+  topGoals: any[] = [];
+  topAssists: any[] = [];
   loaded: boolean;
   // displayedPlayer: any;
 
@@ -24,10 +30,14 @@ export class LeagueComponent implements OnInit {
     this.loaded = false;
     const params = this.route.snapshot.queryParams;
     this.season = params['season'];
-    this.searchService.fetchTopPlayers(params['leagueId'], this.season).subscribe(
+    this.searchService.fetchTopGoals(params['leagueId'], this.season).subscribe(
       responseData => {
-        this.topPlayers = responseData['response'];
-        console.log(responseData);
+        this.topGoals = responseData['response'];
+      }
+    );
+    this.searchService.fetchTopAssists(params['leagueId'], this.season).subscribe(
+      responseData => {
+        this.topAssists = responseData['response'];
       }
     );
     this.searchService.fetchTeamStandings(params['leagueId'], this.season).subscribe(
@@ -41,6 +51,10 @@ export class LeagueComponent implements OnInit {
     );
   }
 
+  public get ScreenType(): typeof ScreenType {
+    return ScreenType;
+  }
+
   onSubmit(id: string) {
     this.router.navigate(['/team'], { queryParamsHandling: "merge", queryParams: { 'teamId': id } });
   }
@@ -49,8 +63,8 @@ export class LeagueComponent implements OnInit {
     return "url('" + this.logoUrl + "')";
   }
 
-  toggleView() {
-    this.standings = !this.standings;
+  toggleView(newScreenType: ScreenType) {
+    this.screenType = newScreenType;
   }
 
   // togglePlayerDisplay(p: any = null) {

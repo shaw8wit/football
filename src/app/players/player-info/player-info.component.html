@@ -204,7 +204,7 @@
                 </td>
                 <td>
                   <span class="tag is-medium"
-                    [ngClass]="t.type === 'Free' ? 'is-danger' : t.type === 'N/A' ? 'is-warning' : 'is-primary'">
+                    [ngClass]="t.type === 'Free' ? 'is-danger' : t.type === 'N/A' ? 'is-warning' : t.type === 'Loan' ? 'is-info' : 'is-primary'">
                     {{ t.type }}
                   </span>
                 </td>

@@ -78,12 +78,25 @@ export class SearchService {
     );
   }
 
-  fetchTopPlayers(leagueId: string, season: string) {
+  fetchTopGoals(leagueId: string, season: string) {
     let params = new HttpParams();
     params = params.append('league', leagueId);
     params = params.append('season', season);
     return this.http.get(
       this.base_url + 'players/topscorers',
+      {
+        headers: new HttpHeaders({ "x-rapidapi-key": api_key }),
+        params: params
+      }
+    );
+  }
+
+  fetchTopAssists(leagueId: string, season: string) {
+    let params = new HttpParams();
+    params = params.append('league', leagueId);
+    params = params.append('season', season);
+    return this.http.get(
+      this.base_url + 'players/topassists',
       {
         headers: new HttpHeaders({ "x-rapidapi-key": api_key }),
         params: params
