@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -16,6 +16,7 @@ import { TeamComponent } from './leagues/league/team/team.component';
 import { CountriesComponent } from './countries/countries.component';
 import { FavoriteComponent } from './global/favorite/favorite.component';
 import { PlayerInfoComponent } from './players/player-info/player-info.component';
+import { ApiInterceptor } from './global/api.interceptor.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,9 @@ import { PlayerInfoComponent } from './players/player-info/player-info.component
     HttpClientModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

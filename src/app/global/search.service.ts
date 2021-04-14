@@ -1,9 +1,7 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { api_key } from '../const';
 import { Country } from '../countries/country.model';
-import { delay } from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -27,9 +25,7 @@ export class SearchService {
     if (!this.countries.length) {
       console.log("Fetching countries:");
       this.http
-        .get<Country[]>(this.base_url + 'countries', {
-          headers: new HttpHeaders({ "x-rapidapi-key": api_key })
-        })
+        .get<Country[]>(this.base_url + 'countries')
         .subscribe(responseData => {
           responseData['response'].forEach(item => {
             this.countries.push(new Country(item['name'], item['flag']));
@@ -41,104 +37,80 @@ export class SearchService {
     }
   }
 
+  getHttpParams(params: string[][]) {
+    let httpParams = new HttpParams();
+    for (let param of params) httpParams = httpParams.append(param[0], param[1]);
+    return httpParams;
+  }
+
   fetchLeagues(country: string) {
     return this.http.get(
       this.base_url + 'leagues',
       {
-        headers: new HttpHeaders({ "x-rapidapi-key": api_key }),
-        params: new HttpParams().set('country', country)
+        params: this.getHttpParams([['country', country]])
       }
     );
   }
 
   fetchTeamStandings(leagueId: string, season: string) {
-    let params = new HttpParams();
-    params = params.append('league', leagueId);
-    params = params.append('season', season);
     return this.http.get(
       this.base_url + 'standings',
       {
-        headers: new HttpHeaders({ "x-rapidapi-key": api_key }),
-        params: params
+        params: this.getHttpParams([['league', leagueId], ['season', season]])
       }
     );
   }
 
   fetchTeamStatistics(leagueId: string, season: string, teamId: string) {
-    let params = new HttpParams();
-    params = params.append('league', leagueId);
-    params = params.append('season', season);
-    params = params.append('team', teamId);
     return this.http.get(
       this.base_url + 'teams/statistics',
       {
-        headers: new HttpHeaders({ "x-rapidapi-key": api_key }),
-        params: params
+        params: this.getHttpParams([['league', leagueId], ['season', season], ['team', teamId]])
       }
     );
   }
 
   fetchTopGoals(leagueId: string, season: string) {
-    let params = new HttpParams();
-    params = params.append('league', leagueId);
-    params = params.append('season', season);
     return this.http.get(
       this.base_url + 'players/topscorers',
       {
-        headers: new HttpHeaders({ "x-rapidapi-key": api_key }),
-        params: params
+        params: this.getHttpParams([['league', leagueId], ['season', season]])
       }
     );
   }
 
   fetchTopAssists(leagueId: string, season: string) {
-    let params = new HttpParams();
-    params = params.append('league', leagueId);
-    params = params.append('season', season);
     return this.http.get(
       this.base_url + 'players/topassists',
       {
-        headers: new HttpHeaders({ "x-rapidapi-key": api_key }),
-        params: params
+        params: this.getHttpParams([['league', leagueId], ['season', season]])
       }
     );
   }
 
   fetchPlayers(leagueId: string, season: string, teamId: string, page: string) {
-    let params = new HttpParams();
-    params = params.append('league', leagueId);
-    params = params.append('season', season);
-    params = params.append('team', teamId);
-    params = params.append('page', page);
     return this.http.get(
       this.base_url + 'players',
       {
-        headers: new HttpHeaders({ "x-rapidapi-key": api_key }),
-        params: params
+        params: this.getHttpParams([['league', leagueId], ['season', season], ['team', teamId], ['page', page]])
       }
     );
   }
 
   fetchTrophies(playerId: string) {
-    let params = new HttpParams();
-    params = params.append('player', playerId);
     return this.http.get(
       this.base_url + 'trophies',
       {
-        headers: new HttpHeaders({ "x-rapidapi-key": api_key }),
-        params: params
+        params: this.getHttpParams([['player', playerId]])
       }
     );
   }
 
   fetchTransfers(playerId: string) {
-    let params = new HttpParams();
-    params = params.append('player', playerId);
     return this.http.get(
       this.base_url + 'transfers',
       {
-        headers: new HttpHeaders({ "x-rapidapi-key": api_key }),
-        params: params
+        params: this.getHttpParams([['player', playerId]])
       }
     );
   }
