@@ -8,6 +8,7 @@ import { Country } from '../countries/country.model';
 })
 export class SearchService {
   countriesFetched = new Subject<Country[]>();
+  private coverage: Object;
   private base_url = 'https://v3.football.api-sports.io/';
   private countries: Country[] = [];
 
@@ -15,6 +16,14 @@ export class SearchService {
 
   getCountries() {
     return this.countries.slice();
+  }
+
+  getCoverage() {
+    return { ...this.coverage };
+  }
+
+  setCoverage(coverage: Object) {
+    this.coverage = coverage;
   }
 
   notifyListeners() {

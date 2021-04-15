@@ -27,21 +27,19 @@ export class LeagueComponent implements OnInit {
   constructor(private route: ActivatedRoute, private searchService: SearchService, private router: Router) { }
 
   ngOnInit(): void {
+    console.log(this.searchService.getCoverage());
     this.loaded = false;
     const params = this.route.snapshot.queryParams;
     this.season = params['season'];
     this.searchService.fetchTopGoals(params['leagueId'], this.season).subscribe(
-      responseData => {
-        this.topGoals = responseData['response'];
-      }
+      responseData => this.topGoals = responseData['response']
     );
     this.searchService.fetchTopAssists(params['leagueId'], this.season).subscribe(
-      responseData => {
-        this.topAssists = responseData['response'];
-      }
+      responseData => this.topAssists = responseData['response']
     );
     this.searchService.fetchTeamStandings(params['leagueId'], this.season).subscribe(
       responseData => {
+        console.log(responseData);
         const r = responseData['response'][0]['league'];
         this.league = r['name'];
         this.logoUrl = r['logo'];
