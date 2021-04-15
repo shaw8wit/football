@@ -15,9 +15,11 @@ export class LeaguesComponent implements OnInit {
   country: string = '';
   loaded: boolean;
 
-  constructor(private route: ActivatedRoute,
+  constructor(
+    private route: ActivatedRoute,
     private searchService: SearchService,
-    private router: Router) { }
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.loaded = false;
@@ -33,8 +35,14 @@ export class LeaguesComponent implements OnInit {
     );
   }
 
-  onSubmit(id: string, year: string) {
-    this.router.navigate(['/league'], { queryParams: { 'leagueId': id, 'season': year } });
+  onSubmit(leagueIdx: number, seasonIdx: number) {
+    const league = this.leagues[leagueIdx];
+    const season = league.seasons[seasonIdx];
+    const coverage = season['coverage'];
+    if (coverage['standings'] || coverage['top_scorers'] || coverage['top_assists']) {
+      this.searchService.setCoverage(coverage);
+      this.router.navigate(['/league'], { queryParams: { 'leagueId': league.id, 'season': season['year'] } });
+    }
   }
 
   getFlagUrl() {

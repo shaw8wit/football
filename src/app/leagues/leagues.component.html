@@ -33,10 +33,10 @@
 
   <ul class="columns is-multiline p-4">
     <li class="column is-one-third-desktop is-half-tablet"
-      *ngFor="let league of leagues | filter: filterString: 'name'">
+      *ngFor="let league of leagues | filter: filterString: 'name'; let j = index">
       <div class="card">
         <!-- <a [routerLink]="['/team']" [queryParams]="{leagueId: league.id, season: year.value}"> -->
-        <a (click)="onSubmit(league.id, year.value)">
+        <a (click)="onSubmit(j, year.value)">
           <div class="card-image">
             <figure class="image is-4by5">
               <img [src]="league.logo" [alt]="league.name">
@@ -50,7 +50,9 @@
         <div class="control is-expanded">
           <div class="select is-fullwidth">
             <select #year>
-              <option *ngFor="let season of league.seasons" [value]="season.year">{{ season.year }}</option>
+              <option *ngFor="let season of league.seasons; let i = index" [value]="i">
+                {{ season.year }}
+              </option>
             </select>
           </div>
         </div>
