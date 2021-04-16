@@ -16,13 +16,13 @@
 
   <div class="tabs is-centered is-boxed is-fullwidth mb-2">
     <ul>
-      <li [ngClass]="{'is-active' : screenType === ScreenType.Standings}">
+      <li *ngIf="teams.length !== 0" [ngClass]="{'is-active' : screenType === ScreenType.Standings}">
         <a (click)="toggleView(ScreenType.Standings)">Standings</a>
       </li>
-      <li [ngClass]="{'is-active' : screenType === ScreenType.TopGoals}">
+      <li *ngIf="topGoals.length !== 0" [ngClass]="{'is-active' : screenType === ScreenType.TopGoals}">
         <a (click)="toggleView(ScreenType.TopGoals)">Top Goals</a>
       </li>
-      <li [ngClass]="{'is-active' : screenType === ScreenType.TopAssists}">
+      <li *ngIf="topAssists.length !== 0" [ngClass]="{'is-active' : screenType === ScreenType.TopAssists}">
         <a (click)="toggleView(ScreenType.TopAssists)">Top Assists</a>
       </li>
     </ul>

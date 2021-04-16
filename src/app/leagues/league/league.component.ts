@@ -18,35 +18,52 @@ export class LeagueComponent implements OnInit {
   logoUrl: string = '';
   season: string = '';
   league: string = '';
-  screenType: ScreenType = ScreenType.Standings;
+  screenType: ScreenType;
   topGoals: any[] = [];
   topAssists: any[] = [];
   loaded: boolean;
+  coverage: Object;
   // displayedPlayer: any;
 
   constructor(private route: ActivatedRoute, private searchService: SearchService, private router: Router) { }
 
   ngOnInit(): void {
-    console.log(this.searchService.getCoverage());
     this.loaded = false;
+    this.coverage = this.searchService.getCoverage();
     const params = this.route.snapshot.queryParams;
     this.season = params['season'];
-    this.searchService.fetchTopGoals(params['leagueId'], this.season).subscribe(
-      responseData => this.topGoals = responseData['response']
-    );
-    this.searchService.fetchTopAssists(params['leagueId'], this.season).subscribe(
-      responseData => this.topAssists = responseData['response']
-    );
-    this.searchService.fetchTeamStandings(params['leagueId'], this.season).subscribe(
-      responseData => {
-        console.log(responseData);
-        const r = responseData['response'][0]['league'];
-        this.league = r['name'];
-        this.logoUrl = r['logo'];
-        this.teams = r['standings'][0];
-        this.loaded = true;
-      }
-    );
+    if (this.coverage['top_assists']) {
+      this.searchService.fetchTopAssists(params['leagueId'], this.season).subscribe(
+        responseData => {
+          this.topAssists = responseData['response'];
+          this.setLoaded(ScreenType.TopAssists);
+        }
+      );
+    }
+    if (this.coverage['top_scorers']) {
+      this.searchService.fetchTopGoals(params['leagueId'], this.season).subscribe(
+        responseData => {
+          this.topGoals = responseData['response'];
+          this.setLoaded(ScreenType.TopGoals);
+        }
+      );
+    }
+    if (this.coverage['standings']) {
+      this.searchService.fetchTeamStandings(params['leagueId'], this.season).subscribe(
+        responseData => {
+          const r = responseData['response'][0]['league'];
+          this.league = r['name'];
+          this.logoUrl = r['logo'];
+          this.teams = r['standings'][0];
+          this.setLoaded(ScreenType.Standings);
+        }
+      );
+    }
+  }
+
+  setLoaded(screenType: ScreenType) {
+    this.screenType = screenType;
+    this.loaded = true;
   }
 
   public get ScreenType(): typeof ScreenType {
