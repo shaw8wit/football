@@ -18,7 +18,7 @@
     <div class="column pb-0 pt-3">
       <div style="display: grid">
         <div class="table-container">
-          <table class="table is-bordered is-fullwidth">
+          <table class="table is-bordered is-fullwidth has-text-centered">
             <thead>
               <tr>
                 <th *ngFor="let c of team.form | split" [ngClass]="{'is-success': c === 'W', 
@@ -33,10 +33,10 @@
 
   <div class="tabs is-centered is-toggle is-fullwidth mb-2">
     <ul>
-      <li [ngClass]="{'is-active' : stats}">
+      <li *ngIf="team" [ngClass]="{'is-active' : stats}">
         <a (click)="toggleView()">Statistics</a>
       </li>
-      <li [ngClass]="{'is-active' : !stats}">
+      <li *ngIf="players.length !== 0" [ngClass]="{'is-active' : !stats}">
         <a (click)="toggleView()">Players</a>
       </li>
     </ul>

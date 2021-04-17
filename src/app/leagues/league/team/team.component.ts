@@ -12,24 +12,32 @@ export class TeamComponent implements OnInit {
   params: any;
   players: any[] = [];
   loadingTeam: boolean;
-  stats: boolean = true;
+  stats: boolean;
   loadingPlayers: boolean;
+  coverage: Object;
   currentPlayerPage: number;
 
   constructor(private searchService: SearchService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.loadingTeam = true;
+    this.coverage = this.searchService.getCoverage();
     this.params = this.route.snapshot.queryParams;
-    this.searchService
-      .fetchTeamStatistics(this.params['leagueId'], this.params['season'], this.params['teamId'])
-      .subscribe(
-        responseData => {
-          this.team = responseData['response'];
-          this.loadingTeam = false;
-        }
-      );
-    this.loadPlayers(1);
+    if (this.coverage['fixtures']['statistics_fixtures']) {
+      this.searchService
+        .fetchTeamStatistics(this.params['leagueId'], this.params['season'], this.params['teamId'])
+        .subscribe(
+          responseData => {
+            this.team = responseData['response'];
+            this.loadingTeam = false;
+            this.stats = true;
+          }
+        );
+    }
+    if (this.coverage['fixtures']['statistics_players']) {
+      this.loadPlayers(1);
+      this.stats = false;
+    }
   }
 
   getUrl() {

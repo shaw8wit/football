@@ -51,6 +51,7 @@ export class LeagueComponent implements OnInit {
     if (this.coverage['standings']) {
       this.searchService.fetchTeamStandings(params['leagueId'], this.season).subscribe(
         responseData => {
+          console.log(responseData['response']);
           const r = responseData['response'][0]['league'];
           this.league = r['name'];
           this.logoUrl = r['logo'];
@@ -71,7 +72,9 @@ export class LeagueComponent implements OnInit {
   }
 
   onSubmit(id: string) {
-    this.router.navigate(['/team'], { queryParamsHandling: "merge", queryParams: { 'teamId': id } });
+    if (this.coverage['fixtures']['statistics_fixtures'] || this.coverage['fixtures']['statistics_players']) {
+      this.router.navigate(['/team'], { queryParamsHandling: "merge", queryParams: { 'teamId': id } });
+    }
   }
 
   getLogoUrl() {
