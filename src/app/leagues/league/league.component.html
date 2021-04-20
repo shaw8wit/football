@@ -16,7 +16,7 @@
 
   <div class="tabs is-centered is-boxed is-fullwidth mb-2">
     <ul>
-      <li *ngIf="teams.length !== 0" [ngClass]="{'is-active' : screenType === ScreenType.Standings}">
+      <li *ngIf="teamGroups.length !== 0" [ngClass]="{'is-active' : screenType === ScreenType.Standings}">
         <a (click)="toggleView(ScreenType.Standings)">Standings</a>
       </li>
       <li *ngIf="topGoals.length !== 0" [ngClass]="{'is-active' : screenType === ScreenType.TopGoals}">
@@ -40,7 +40,7 @@
       <div class="column p-0">
         <div style="display: grid">
           <div class="table-container box p-0 m-3">
-            <table class="table is-striped is-hoverable is-fullwidth">
+            <table class="table is-striped is-hoverable is-fullwidth" *ngFor="let teams of teamGroups">
               <thead>
                 <tr style="cursor: default;">
                   <!-- <abbr title="Played">Pld</abbr> ! use this  -->

@@ -13,7 +13,7 @@ enum ScreenType {
   styleUrls: ['./league.component.css']
 })
 export class LeagueComponent implements OnInit {
-  teams: any[] = [];
+  teamGroups: any[] = [];
   filterString: string = '';
   logoUrl: string = '';
   season: string = '';
@@ -55,7 +55,7 @@ export class LeagueComponent implements OnInit {
           const r = responseData['response'][0]['league'];
           this.league = r['name'];
           this.logoUrl = r['logo'];
-          this.teams = r['standings'][0];
+          this.teamGroups = r['standings'];
           this.setLoaded(ScreenType.Standings);
         }
       );
