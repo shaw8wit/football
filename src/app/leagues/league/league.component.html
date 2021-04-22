@@ -20,10 +20,13 @@
         <a (click)="toggleView(ScreenType.Standings)">Standings</a>
       </li>
       <li *ngIf="topGoals.length !== 0" [ngClass]="{'is-active' : screenType === ScreenType.TopGoals}">
-        <a (click)="toggleView(ScreenType.TopGoals)">Top Goals</a>
+        <a (click)="toggleView(ScreenType.TopGoals)">Goals</a>
       </li>
       <li *ngIf="topAssists.length !== 0" [ngClass]="{'is-active' : screenType === ScreenType.TopAssists}">
-        <a (click)="toggleView(ScreenType.TopAssists)">Top Assists</a>
+        <a (click)="toggleView(ScreenType.TopAssists)">Assists</a>
+      </li>
+      <li *ngIf="fixtures.length !== 0" [ngClass]="{'is-active' : screenType === ScreenType.Fixtures}">
+        <a (click)="toggleView(ScreenType.Fixtures)">Fixtures</a>
       </li>
     </ul>
   </div>
@@ -43,7 +46,6 @@
             <table class="table is-striped is-hoverable is-fullwidth" *ngFor="let teams of teamGroups">
               <thead>
                 <tr style="cursor: default;">
-                  <!-- <abbr title="Played">Pld</abbr> ! use this  -->
                   <th><abbr title="Standing">#</abbr></th>
                   <th>Club</th>
                   <th><abbr title="Matches Played">MP</abbr></th>
@@ -88,26 +90,62 @@
     </div>
   </div>
 
-  <!-- <app-player-info (close)="togglePlayerDisplay()" [player]="displayedPlayer" *ngIf="displayedPlayer"></app-player-info>
-
-  <ul *ngIf="!standings" class="columns is-multiline p-3">
-    <li *ngFor="let p of topPlayers" class="column is-one-quarter-widescreen is-one-third-desktop is-half-tablet">
-      <div class="card" (click)="togglePlayerDisplay(p)">
-        <div class="card-image">
-          <figure class="image is-square">
-            <img [src]="p.player.photo" [alt]="p.player.name">
-          </figure>
-        </div>
-        <div class="card-content p-3 has-text-centered">
-          <p class="title is-6">{{ p.player.name }}</p>
-          <p class="subtitle is-7">Age: {{ p.player.age }}</p>
-        </div>
-      </div>
-    </li>
-  </ul> -->
-
   <app-players *ngIf="screenType === ScreenType.TopGoals" [players]="topGoals"></app-players>
 
   <app-players *ngIf="screenType === ScreenType.TopAssists" [players]="topAssists"></app-players>
+
+  <div *ngIf="screenType === ScreenType.Fixtures">
+    <div class="columns">
+      <div class="column p-0">
+        <div style="display: grid">
+          <div class="table-container box p-0 m-3">
+            <table class="table is-striped is-hoverable is-fullwidth has-text-centered"
+              *ngFor="let teams of teamGroups">
+              <thead>
+                <tr style="cursor: default;">
+                  <th>Home</th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th>Away</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let f of fixtures">
+                  <td>
+                    <div class="columns">
+                      <div class="column is-narrow">
+                        <figure class="image is-32x32">
+                          <img [src]="f.teams.home.logo" [alt]="f.teams.home.name">
+                        </figure>
+                      </div>
+                      <div class="column">
+                        {{ f.teams.home.name }}
+                      </div>
+                    </div>
+                  </td>
+                  <td>{{ f.goals.home }}</td>
+                  <td> - </td>
+                  <td>{{ f.goals.away }}</td>
+                  <td>
+                    <div class="columns">
+                      <div class="column">
+                        {{ f.teams.away.name }}
+                      </div>
+                      <div class="column is-narrow">
+                        <figure class="image is-32x32">
+                          <img [src]="f.teams.away.logo" [alt]="f.teams.away.name">
+                        </figure>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </div>

@@ -6,6 +6,7 @@ enum ScreenType {
   Standings,
   TopGoals,
   TopAssists,
+  Fixtures
 };
 @Component({
   selector: 'app-league',
@@ -23,6 +24,7 @@ export class LeagueComponent implements OnInit {
   topAssists: any[] = [];
   loaded: boolean;
   coverage: Object;
+  fixtures: any[] = [];
   // displayedPlayer: any;
 
   constructor(private route: ActivatedRoute, private searchService: SearchService, private router: Router) { }
@@ -30,6 +32,7 @@ export class LeagueComponent implements OnInit {
   ngOnInit(): void {
     this.loaded = false;
     this.coverage = this.searchService.getCoverage();
+    console.log(this.coverage);
     const params = this.route.snapshot.queryParams;
     this.season = params['season'];
     if (this.coverage['top_assists']) {
@@ -51,7 +54,6 @@ export class LeagueComponent implements OnInit {
     if (this.coverage['standings']) {
       this.searchService.fetchTeamStandings(params['leagueId'], this.season).subscribe(
         responseData => {
-          console.log(responseData['response']);
           const r = responseData['response'][0]['league'];
           this.league = r['name'];
           this.logoUrl = r['logo'];
@@ -60,6 +62,12 @@ export class LeagueComponent implements OnInit {
         }
       );
     }
+    this.searchService.fetchFixtures(params['leagueId'], this.season, '38').subscribe(
+      responseData => {
+        console.log(responseData['response']);
+        this.fixtures = responseData['response'];
+      }
+    )
   }
 
   setLoaded(screenType: ScreenType) {

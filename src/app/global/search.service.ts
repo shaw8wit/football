@@ -123,4 +123,13 @@ export class SearchService {
       }
     );
   }
+
+  fetchFixtures(leagueId: string, season: string, last: string) {
+    return this.http.get(
+      this.base_url + 'fixtures',
+      {
+        params: this.getHttpParams([['league', leagueId], ['season', season], ['last', last]])
+      }
+    );
+  }
 }
