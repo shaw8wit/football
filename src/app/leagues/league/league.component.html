@@ -99,8 +99,7 @@
       <div class="column p-0">
         <div style="display: grid">
           <div class="table-container box p-0 m-3">
-            <table class="table is-striped is-hoverable is-fullwidth has-text-centered"
-              *ngFor="let teams of teamGroups">
+            <table class="table is-striped is-hoverable is-fullwidth has-text-centered">
               <thead>
                 <tr style="cursor: default;">
                   <th>Home</th>
@@ -111,7 +110,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let f of fixtures">
+                <tr *ngFor="let f of fixtures[fixtureIdx]">
                   <td>
                     <div class="columns">
                       <div class="column is-narrow">
@@ -146,6 +145,16 @@
         </div>
       </div>
     </div>
+
+    <nav class="pagination is-centered m-0 p-0" role="navigation">
+      <ul class="pagination-list">
+        <li *ngFor="let i of fixtures; let index = index">
+          <a class="pagination-link" (click)="fixtureIdx = index" [ngClass]="{'is-current': fixtureIdx == index}">
+            {{ index + 1 }}
+          </a>
+        </li>
+      </ul>
+    </nav>
   </div>
 
 </div>

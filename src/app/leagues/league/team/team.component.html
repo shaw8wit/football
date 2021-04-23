@@ -133,25 +133,11 @@
 
   <!-- * team players -->
   <div *ngIf="!stats">
+
     <app-loader [margin]=false *ngIf="loadingPlayers"></app-loader>
+
     <app-players [players]="players[currentPlayerPage - 1]" *ngIf="!loadingPlayers"></app-players>
 
-    <!-- <ul *ngIf="!loadingPlayers" class="columns is-multiline p-3">
-      <li class="column is-one-quarter-widescreen is-one-third-desktop is-half-tablet"
-        *ngFor="let p of players[currentPlayerPage - 1]">
-        <div class="card">
-          <div class="card-image">
-            <figure class="image is-square">
-              <img [src]="p.player.photo" [alt]="p.player.name">
-            </figure>
-          </div>
-          <div class="card-content p-3 has-text-centered">
-            <p class="title is-6">{{ p.player.name }}</p>
-            <p class="subtitle is-7">Age: {{ p.player.age }}</p>
-          </div>
-        </div>
-      </li>
-    </ul> -->
     <nav class="pagination is-centered m-0 p-0" role="navigation">
       <ul class="pagination-list">
         <li *ngFor="let i of players; let index = index">
@@ -162,6 +148,7 @@
         </li>
       </ul>
     </nav>
+
   </div>
 
 </div>

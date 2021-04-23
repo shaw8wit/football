@@ -25,6 +25,7 @@ export class LeagueComponent implements OnInit {
   loaded: boolean;
   coverage: Object;
   fixtures: any[] = [];
+  fixtureIdx: number = 0;
   // displayedPlayer: any;
 
   constructor(private route: ActivatedRoute, private searchService: SearchService, private router: Router) { }
@@ -62,10 +63,11 @@ export class LeagueComponent implements OnInit {
         }
       );
     }
-    this.searchService.fetchFixtures(params['leagueId'], this.season, '38').subscribe(
+    this.searchService.fetchFixtures(params['leagueId'], this.season).subscribe(
       responseData => {
-        console.log(responseData['response']);
-        this.fixtures = responseData['response'];
+        const res = responseData['response'];
+        const l = Math.ceil(res.length / 38);
+        for (let i = 0; i < l; i++) this.fixtures.push(res.slice(i * 38, Math.min((i + 1) * 38, res.length)));
       }
     )
   }
@@ -92,8 +94,4 @@ export class LeagueComponent implements OnInit {
   toggleView(newScreenType: ScreenType) {
     this.screenType = newScreenType;
   }
-
-  // togglePlayerDisplay(p: any = null) {
-  //   this.displayedPlayer = p;
-  // }
 }
