@@ -23,18 +23,16 @@ export class TeamComponent implements OnInit {
     this.loadingTeam = true;
     this.coverage = this.searchService.getCoverage();
     this.params = this.route.snapshot.queryParams;
-    if (this.coverage['fixtures']['statistics_fixtures']) {
-      this.searchService
-        .fetchTeamStatistics(this.params['leagueId'], this.params['season'], this.params['teamId'])
-        .subscribe(
-          responseData => {
-            this.team = responseData['response'];
-            this.loadingTeam = false;
-            this.stats = true;
-          }
-        );
-    }
-    if (this.coverage['fixtures']['statistics_players']) {
+    this.searchService
+      .fetchTeamStatistics(this.params['leagueId'], this.params['season'], this.params['teamId'])
+      .subscribe(
+        responseData => {
+          this.team = responseData['response'];
+          this.loadingTeam = false;
+          this.stats = true;
+        }
+      );
+    if (this.coverage['players']) {
       this.loadPlayers(1);
       this.stats = false;
     }

@@ -26,7 +26,6 @@ export class LeagueComponent implements OnInit {
   coverage: Object;
   fixtures: any[] = [];
   fixtureIdx: number = 0;
-  // displayedPlayer: any;
 
   constructor(private route: ActivatedRoute, private searchService: SearchService, private router: Router) { }
 
@@ -82,7 +81,7 @@ export class LeagueComponent implements OnInit {
   }
 
   onSubmit(id: string) {
-    if (this.coverage['fixtures']['statistics_fixtures'] || this.coverage['fixtures']['statistics_players']) {
+    if (this.coverage['players']) {
       this.router.navigate(['/team'], { queryParamsHandling: "merge", queryParams: { 'teamId': id } });
     }
   }
