@@ -212,6 +212,26 @@
             </tbody>
           </table>
         </details>
+
+        <details *ngIf="sidelined.length" class="mb-1 p-1">
+          <summary class="title box mb-1" style="cursor: pointer;">Sidelined</summary>
+          <table class="table is-striped is-hoverable is-fullwidth has-text-centered">
+            <thead>
+              <tr>
+                <th>Type</th>
+                <th>From</th>
+                <th>To</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let s of sidelined">
+                <td>{{ s.type }}</td>
+                <td>{{ s.start }}</td>
+                <td>{{ s.end }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </details>
       </section>
 
       <footer class="modal-card-foot">

@@ -12,19 +12,28 @@ export class PlayerInfoComponent implements OnInit {
   stats: any;
   achievements: any[] = [];
   transfers: any[] = [];
+  sidelined: any[] = [];
 
   constructor(private searchService: SearchService) { }
 
   ngOnInit(): void {
-    this.searchService.fetchTrophies(this.player.player.id).subscribe(
+    const id = this.player.player.id;
+    this.searchService.fetchTrophies(id).subscribe(
       responseData => this.achievements = responseData['response']
     );
-    this.searchService.fetchTransfers(this.player.player.id).subscribe(
+    this.searchService.fetchTransfers(id).subscribe(
       responseData => {
         const temp = responseData['response'][0];
         if (temp) this.transfers = temp['transfers'];
       }
     );
+    this.searchService.fetchSidelined(id).subscribe(
+      responseData => {
+        this.sidelined = responseData['response'];
+        console.log(this.sidelined);
+        console.log(responseData['response']);
+      }
+    )
     this.stats = this.player.statistics[0];
   }
 

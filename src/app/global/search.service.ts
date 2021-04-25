@@ -132,4 +132,13 @@ export class SearchService {
       }
     );
   }
+
+  fetchSidelined(playerId: string) {
+    return this.http.get(
+      this.base_url + 'sidelined',
+      {
+        params: this.getHttpParams([['player', playerId]])
+      }
+    );
+  }
 }
