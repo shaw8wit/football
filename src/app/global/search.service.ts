@@ -141,4 +141,13 @@ export class SearchService {
       }
     );
   }
+
+  fetchFixtureStats(fixtureId: string) {
+    return this.http.get(
+      this.base_url + 'fixtures/statistics',
+      {
+        params: this.getHttpParams([['fixture', fixtureId]])
+      }
+    );
+  }
 }

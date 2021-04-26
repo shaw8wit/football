@@ -65,10 +65,20 @@ export class LeagueComponent implements OnInit {
     this.searchService.fetchFixtures(params['leagueId'], this.season).subscribe(
       responseData => {
         const res = responseData['response'];
+        console.log(res);
         const l = Math.ceil(res.length / 38);
         for (let i = 0; i < l; i++) this.fixtures.push(res.slice(i * 38, Math.min((i + 1) * 38, res.length)));
       }
     )
+  }
+
+  // temporary fixture stats call
+  getFixtureStats(fixtureId: string) {
+    this.searchService.fetchFixtureStats(fixtureId).subscribe(
+      responseBody => {
+        console.log(responseBody['response']);
+      }
+    );
   }
 
   setLoaded(screenType: ScreenType) {

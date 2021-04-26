@@ -110,7 +110,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let f of fixtures[fixtureIdx]">
+                <tr *ngFor="let f of fixtures[fixtureIdx]" (click)="getFixtureStats(f.fixture.id)">
                   <td>
                     <div class="columns">
                       <div class="column is-narrow">
