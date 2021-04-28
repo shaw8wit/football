@@ -17,6 +17,7 @@ import { CountriesComponent } from './countries/countries.component';
 import { FavoriteComponent } from './global/favorite/favorite.component';
 import { PlayerInfoComponent } from './players/player-info/player-info.component';
 import { ApiInterceptor } from './global/api.interceptor.service';
+import { FixtureComponent } from './leagues/league/fixture/fixture.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { ApiInterceptor } from './global/api.interceptor.service';
     FavoriteComponent,
     CountriesComponent,
     PlayersComponent,
+    FixtureComponent,
   ],
   imports: [
     FormsModule,

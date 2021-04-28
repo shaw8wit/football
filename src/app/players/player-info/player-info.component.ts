@@ -28,11 +28,7 @@ export class PlayerInfoComponent implements OnInit {
       }
     );
     this.searchService.fetchSidelined(id).subscribe(
-      responseData => {
-        this.sidelined = responseData['response'];
-        console.log(this.sidelined);
-        console.log(responseData['response']);
-      }
+      responseData => this.sidelined = responseData['response']
     )
     this.stats = this.player.statistics[0];
   }
