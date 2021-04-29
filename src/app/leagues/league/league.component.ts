@@ -26,6 +26,7 @@ export class LeagueComponent implements OnInit {
   coverage: Object;
   fixtures: any[] = [];
   fixtureIdx: number = 0;
+  displayedFixtureId: string = null;
 
   constructor(private route: ActivatedRoute, private searchService: SearchService, private router: Router) { }
 
@@ -73,11 +74,7 @@ export class LeagueComponent implements OnInit {
 
   // ! temporary fixture stats call
   getFixtureStats(fixtureId: string) {
-    this.searchService.fetchFixtureStats(fixtureId).subscribe(
-      responseBody => {
-        console.log(responseBody['response']);
-      }
-    );
+    this.displayedFixtureId = fixtureId;
   }
 
   setLoaded(screenType: ScreenType) {
@@ -101,5 +98,9 @@ export class LeagueComponent implements OnInit {
 
   toggleView(newScreenType: ScreenType) {
     this.screenType = newScreenType;
+  }
+
+  toggleFixtureDisplay(p: string = null) {
+    this.displayedFixtureId = p;
   }
 }

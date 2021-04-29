@@ -1,4 +1,5 @@
 <app-loader [margin]=true *ngIf="!loaded"></app-loader>
+<app-fixture *ngIf="displayedFixtureId" [fixtureId]="displayedFixtureId" (close)="toggleFixtureDisplay()"></app-fixture>
 
 <div *ngIf="loaded">
 

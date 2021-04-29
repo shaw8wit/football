@@ -1,0 +1,41 @@
+<div class="backdrop" *ngIf="team1 && team2">
+  <div class="alert-box">
+    <div class="modal-card is-dark">
+      <header class="modal-card-head">
+        <p class="modal-card-title">
+          {{ team1.team.name }} VS {{ team2.team.name }}
+        </p>
+        <button class="delete" aria-label="close" (click)="onClose()"></button>
+      </header>
+      <section class="modal-card-body p-2">
+        <!-- <section class="hero">
+          <div class="hero-body has-text-right">
+            <p class="title">
+            </p>
+            <p class="subtitle">
+            </p>
+          </div>
+        </section> -->
+
+        <div class="box">
+          <table class="table is-fullwidth has-text-centered">
+            <thead>
+              <tr>
+                <th>{{ team1.team.name }}</th>
+                <th>Statistics</th>
+                <th>{{ team2.team.name }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let t of team1['statistics']; let i = index">
+                <td>{{ team1.statistics[i].value }}</td>
+                <td>{{ team1.statistics[i].type }}</td>
+                <td>{{ team2.statistics[i].value }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

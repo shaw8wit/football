@@ -1,0 +1,25 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 50;
+}
+
+.alert-box {
+  margin-left: auto;
+  z-index: 100;
+  background-color: transparent;
+}
+
+.modal-card {
+  margin-top: 3vh;
+  height: 94vh;
+  width: 90vw;
+}
+
+.delete {
+  background-color: rgba(216, 33, 33, 0.7);
+}
