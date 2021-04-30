@@ -2,21 +2,24 @@
   <div class="alert-box">
     <div class="modal-card is-dark">
       <header class="modal-card-head">
-        <p class="modal-card-title">
-          {{ team1.team.name }} VS {{ team2.team.name }}
-        </p>
+        <div class="modal-card-title">
+          <div class="columns is-mobile">
+            <div class="column is-narrow">
+              <figure class="image is-32x32">
+                <img [src]="team1.team.logo" [alt]="team1.team.name">
+              </figure>
+            </div>
+            <div class="column is-narrow"> vs </div>
+            <div class="column is-narrow">
+              <figure class="image is-32x32">
+                <img [src]="team2.team.logo" [alt]="team2.team.name">
+              </figure>
+            </div>
+          </div>
+        </div>
         <button class="delete" aria-label="close" (click)="onClose()"></button>
       </header>
       <section class="modal-card-body p-2">
-        <!-- <section class="hero">
-          <div class="hero-body has-text-right">
-            <p class="title">
-            </p>
-            <p class="subtitle">
-            </p>
-          </div>
-        </section> -->
-
         <div class="box">
           <table class="table is-fullwidth has-text-centered">
             <thead>
