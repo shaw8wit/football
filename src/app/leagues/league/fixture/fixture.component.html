@@ -31,9 +31,17 @@
             </thead>
             <tbody>
               <tr *ngFor="let t of team1['statistics']; let i = index">
-                <td>{{ team1.statistics[i].value }}</td>
+                <td>
+                  <span class="tag is-medium" [ngClass]="comp(i, true)">
+                    {{ team1.statistics[i].value }}
+                  </span>
+                </td>
                 <td>{{ team1.statistics[i].type }}</td>
-                <td>{{ team2.statistics[i].value }}</td>
+                <td>
+                  <span class="tag is-medium" [ngClass]="comp(i, false)">
+                    {{ team2.statistics[i].value }}
+                  </span>
+                </td>
               </tr>
             </tbody>
           </table>
