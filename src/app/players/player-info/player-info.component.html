@@ -201,7 +201,9 @@
             </thead>
             <tbody>
               <tr *ngFor="let s of sidelined">
-                <td>{{ s.type }}</td>
+                <span class="tag is-medium is-light" [ngClass]="getSidelined(s.type)">
+                  <td>{{ s.type }}</td>
+                </span>
                 <td>{{ s.start }}</td>
                 <td>{{ s.end }}</td>
               </tr>

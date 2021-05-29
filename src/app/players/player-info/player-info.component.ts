@@ -37,6 +37,14 @@ export class PlayerInfoComponent implements OnInit {
     this.close.emit();
   }
 
+  getSidelined(type: string) {
+    type = type.toLowerCase();
+    if (type === 'suspended') return 'is-danger';
+    else if (type.includes('injury')) return 'is-warning';
+    else if (type.includes('strain')) return 'is-link';
+    return 'is-info';
+  }
+
   getUrl() {
     return "url('" + this.player.player.photo + "')";
   }
