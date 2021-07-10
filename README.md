@@ -6,7 +6,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Getting started
 
-Clone or download the repo. Run `npm start` to install dependencies.
++ Clone or download the repo. 
++ Run `npm install` to install dependencies.
 
 ## Development server
 
